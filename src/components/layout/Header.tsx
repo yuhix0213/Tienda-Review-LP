@@ -7,51 +7,19 @@ import { TiendaReviewLogo } from "@/components/brand/TiendaReviewLogo";
 import { Container } from "@/components/ui/Container";
 
 const navigation = [
-  {
-    href: "#como-funciona",
-    label: "Cómo funciona",
-  },
-  {
-    href: "#problema",
-    label: "El problema",
-  },
-  {
-    href: "#smart-review",
-    label: "Smart Review™",
-  },
-  {
-    href: "#confianza",
-    label: "Confianza",
-  },
-  {
-    href: "#faq",
-    label: "FAQ",
-  },
+  { href: "#como-funciona", label: "Cómo funciona" },
+  { href: "#problema", label: "El problema" },
+  { href: "#smart-review", label: "Smart Review™" },
+  { href: "#confianza", label: "Confianza" },
+  { href: "#faq", label: "FAQ" },
 ];
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 24);
-    };
-
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-    });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1080) {
+      if (window.innerWidth > 1120) {
         setIsMenuOpen(false);
       }
     };
@@ -76,90 +44,58 @@ export function Header() {
   };
 
   return (
-    <header
-      className={[
-        "tr-header-v3",
-        isScrolled ? "tr-header-v3--scrolled" : "",
-        isMenuOpen ? "tr-header-v3--menu-open" : "",
-      ]
-        .filter(Boolean)
-        .join(" ")}
-    >
-      <Container className="tr-header-v3__inner">
+    <header className="site-header">
+      <Container className="site-header__inner">
         <a
           href="#inicio"
-          className="tr-header-v3__brand"
+          className="site-header__brand"
           aria-label="Tienda Review — Inicio"
           onClick={closeMenu}
         >
-          <span className="tr-header-v3__logo-surface">
-            <TiendaReviewLogo
-              priority
-              className="tr-header-v3__logo"
-            />
-          </span>
+          <TiendaReviewLogo priority className="site-header__logo" />
         </a>
 
         <nav
           id="site-navigation"
-          className={[
-            "tr-header-v3__nav",
-            isMenuOpen ? "tr-header-v3__nav--open" : "",
-          ]
-            .filter(Boolean)
-            .join(" ")}
+          className={`site-header__nav${isMenuOpen ? " is-open" : ""}`}
           aria-label="Navegación principal"
         >
-          <div className="tr-header-v3__nav-links">
-            {navigation.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={closeMenu}
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
+          {navigation.map((item) => (
+            <a key={item.href} href={item.href} onClick={closeMenu}>
+              {item.label}
+            </a>
+          ))}
 
           <a
             href="#registro"
-            className="tr-header-v3__mobile-cta"
+            className="button button--primary site-header__mobile-cta"
             onClick={closeMenu}
           >
-            <span>Solicitar acceso</span>
+            Solicitar acceso
             <ArrowRight size={17} aria-hidden="true" />
           </a>
         </nav>
 
-        <div className="tr-header-v3__actions">
+        <div className="site-header__actions">
           <a
             href="#registro"
-            className="tr-header-v3__cta"
+            className="button button--primary desktop-only"
           >
-            <span>Solicitar acceso</span>
+            Solicitar acceso
             <ArrowRight size={17} aria-hidden="true" />
           </a>
 
           <button
             type="button"
-            className="tr-header-v3__menu-button"
-            aria-label={
-              isMenuOpen
-                ? "Cerrar menú de navegación"
-                : "Abrir menú de navegación"
-            }
+            className="menu-button"
+            aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={isMenuOpen}
             aria-controls="site-navigation"
             onClick={() => {
               setIsMenuOpen((current) => !current);
             }}
           >
-            {isMenuOpen ? (
-              <X size={22} aria-hidden="true" />
-            ) : (
-              <Menu size={22} aria-hidden="true" />
-            )}
+            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </Container>
