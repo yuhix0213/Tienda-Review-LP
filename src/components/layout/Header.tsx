@@ -7,11 +7,26 @@ import { TiendaReviewLogo } from "@/components/brand/TiendaReviewLogo";
 import { Container } from "@/components/ui/Container";
 
 const navigation = [
-  { href: "#como-funciona", label: "Cómo funciona" },
-  { href: "#problema", label: "El problema" },
-  { href: "#smart-review", label: "Smart Review™" },
-  { href: "#confianza", label: "Confianza" },
-  { href: "#faq", label: "FAQ" },
+  {
+    href: "#como-funciona",
+    label: "Cómo funciona",
+  },
+  {
+    href: "#problema",
+    label: "El problema",
+  },
+  {
+    href: "#smart-review",
+    label: "Smart Review™",
+  },
+  {
+    href: "#confianza",
+    label: "Confianza",
+  },
+  {
+    href: "#faq",
+    label: "FAQ",
+  },
 ];
 
 export function Header() {
@@ -19,7 +34,7 @@ export function Header() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 1120) {
+      if (window.innerWidth >= 1120) {
         setIsMenuOpen(false);
       }
     };
@@ -52,7 +67,10 @@ export function Header() {
           aria-label="Tienda Review — Inicio"
           onClick={closeMenu}
         >
-          <TiendaReviewLogo priority className="site-header__logo" />
+          <TiendaReviewLogo
+            priority
+            className="site-header__logo"
+          />
         </a>
 
         <nav
@@ -61,7 +79,11 @@ export function Header() {
           aria-label="Navegación principal"
         >
           {navigation.map((item) => (
-            <a key={item.href} href={item.href} onClick={closeMenu}>
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={closeMenu}
+            >
               {item.label}
             </a>
           ))}
@@ -95,7 +117,11 @@ export function Header() {
               setIsMenuOpen((current) => !current);
             }}
           >
-            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            {isMenuOpen ? (
+              <X size={22} aria-hidden="true" />
+            ) : (
+              <Menu size={22} aria-hidden="true" />
+            )}
           </button>
         </div>
       </Container>
