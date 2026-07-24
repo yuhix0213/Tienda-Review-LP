@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" width="600" height="300">
+  <g transform="translate(36,76.5) scale(0.42)">
+    <path d="M200 60C144.77 60 100 104.77 100 160C100 231 200 340 200 340C200 340 300 231 300 160C300 104.77 255.23 60 200 60Z" fill="#2457e0"></path>
+    <path d="M200.00,104.00 L212.93,140.20 L251.36,141.31 L220.92,164.80 L231.74,201.69 L200.00,180.00 L168.26,201.69 L179.08,164.80 L148.64,141.31 L187.07,140.20 Z" fill="#ffffff"></path>
+    <circle cx="278" cy="272" r="46" fill="#16a34a" stroke="#ffffff" stroke-width="8"></circle>
+    <path d="M278 250 L300 288 L278 276 L256 288 Z" fill="#ffffff"></path>
+  </g>
+  <text x="195" y="140" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="62" fill="#132a52">Tienda</text>
+  <text x="195" y="205" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="62" fill="#2457e0">Review</text>
+</svg>
