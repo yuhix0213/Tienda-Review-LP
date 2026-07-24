@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 
 import { TiendaReviewLogo } from "@/components/brand/TiendaReviewLogo";
-import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 
 const navigation = [
@@ -35,33 +34,42 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const updateHeaderState = () => {
-      setIsScrolled(window.scrollY > 16);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 24);
     };
 
-    updateHeaderState();
-    window.addEventListener("scroll", updateHeaderState, {
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, {
       passive: true,
     });
 
     return () => {
-      window.removeEventListener("scroll", updateHeaderState);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   useEffect(() => {
-    const closeMenuOnResize = () => {
-      if (window.innerWidth > 1120) {
+    const handleResize = () => {
+      if (window.innerWidth >= 1080) {
         setIsMenuOpen(false);
       }
     };
 
-    window.addEventListener("resize", closeMenuOnResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", closeMenuOnResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
 
   const closeMenu = () => {
     setIsMenuOpen(false);
@@ -69,60 +77,73 @@ export function Header() {
 
   return (
     <header
-      className={`site-header site-header--v2 ${
-        isScrolled ? "is-scrolled" : ""
-      }`}
+      className={[
+        "tr-header-v3",
+        isScrolled ? "tr-header-v3--scrolled" : "",
+        isMenuOpen ? "tr-header-v3--menu-open" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
-      <Container className="site-header__inner site-header__inner--v2">
+      <Container className="tr-header-v3__inner">
         <a
           href="#inicio"
-          className="site-header__brand site-header__brand--v2"
+          className="tr-header-v3__brand"
           aria-label="Tienda Review — Inicio"
           onClick={closeMenu}
         >
-          <TiendaReviewLogo
-            priority
-            className="site-header__official-logo"
-          />
+          <span className="tr-header-v3__logo-surface">
+            <TiendaReviewLogo
+              priority
+              className="tr-header-v3__logo"
+            />
+          </span>
         </a>
 
         <nav
-          className={`site-header__nav site-header__nav--v2 ${
-            isMenuOpen ? "is-open" : ""
-          }`}
+          id="site-navigation"
+          className={[
+            "tr-header-v3__nav",
+            isMenuOpen ? "tr-header-v3__nav--open" : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
           aria-label="Navegación principal"
         >
-          {navigation.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={closeMenu}
-            >
-              {item.label}
-            </a>
-          ))}
-
-          <div className="site-header__mobile-cta">
-            <ButtonLink
-              href="#registro"
-              className="site-header__mobile-cta-button"
-            >
-              Solicitar acceso
-            </ButtonLink>
+          <div className="tr-header-v3__nav-links">
+            {navigation.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={closeMenu}
+              >
+                {item.label}
+              </a>
+            ))}
           </div>
+
+          <a
+            href="#registro"
+            className="tr-header-v3__mobile-cta"
+            onClick={closeMenu}
+          >
+            <span>Solicitar acceso</span>
+            <ArrowRight size={17} aria-hidden="true" />
+          </a>
         </nav>
 
-        <div className="site-header__actions site-header__actions--v2">
-          <ButtonLink
+        <div className="tr-header-v3__actions">
+          <a
             href="#registro"
-            className="site-header__desktop-cta"
+            className="tr-header-v3__cta"
           >
-            Solicitar acceso
-          </ButtonLink>
+            <span>Solicitar acceso</span>
+            <ArrowRight size={17} aria-hidden="true" />
+          </a>
 
           <button
-            className="menu-button menu-button--v2"
             type="button"
+            className="tr-header-v3__menu-button"
             aria-label={
               isMenuOpen
                 ? "Cerrar menú de navegación"
@@ -130,12 +151,14 @@ export function Header() {
             }
             aria-expanded={isMenuOpen}
             aria-controls="site-navigation"
-            onClick={() => setIsMenuOpen((current) => !current)}
+            onClick={() => {
+              setIsMenuOpen((current) => !current);
+            }}
           >
             {isMenuOpen ? (
-              <X size={23} aria-hidden="true" />
+              <X size={22} aria-hidden="true" />
             ) : (
-              <Menu size={23} aria-hidden="true" />
+              <Menu size={22} aria-hidden="true" />
             )}
           </button>
         </div>
