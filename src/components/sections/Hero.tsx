@@ -20,8 +20,13 @@ export function Hero() {
           </div>
 
           <h1 id="hero-title">
-            Convierte buenas experiencias
-            <span>en confianza visible.</span>
+            <span className="hero__title-line hero__title-line--navy">
+              Convierte buenas experiencias
+            </span>
+
+            <span className="hero__title-line hero__title-line--green">
+              en confianza visible.
+            </span>
           </h1>
 
           <p className="hero__lead">
