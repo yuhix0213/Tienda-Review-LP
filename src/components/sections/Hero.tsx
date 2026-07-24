@@ -3,252 +3,281 @@ import {
   ArrowRight,
   Check,
   CheckCircle2,
+  ChevronRight,
+  MessageSquareText,
+  QrCode,
   ShieldCheck,
   Sparkles,
   Star,
+  UserCheck,
 } from "lucide-react";
 
-import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 
-const trustPoints = [
+const principles = [
   {
-    icon: ShieldCheck,
-    label: "IA con supervisión humana",
+    icon: MessageSquareText,
+    title: "Experiencia real",
+    description: "La información nace de lo que vivió el cliente.",
   },
   {
-    icon: CheckCircle2,
-    label: "Sin publicaciones automáticas",
+    icon: Sparkles,
+    title: "Asistencia inteligente",
+    description: "Smart Review™ ayuda a ordenar la idea.",
   },
   {
-    icon: Check,
-    label: "Tu cliente siempre decide",
+    icon: UserCheck,
+    title: "Decisión humana",
+    description: "La persona revisa, edita y decide.",
   },
 ];
 
 export function Hero() {
   return (
-    <section id="inicio" className="hero hero--v2">
-      <div
-        className="hero__background-grid"
-        aria-hidden="true"
-      />
+    <section
+      id="inicio"
+      className="tr-hero-v3"
+      aria-labelledby="hero-title"
+    >
+      <div className="tr-hero-v3__ambient" aria-hidden="true">
+        <div className="tr-hero-v3__grid" />
+        <div className="tr-hero-v3__glow tr-hero-v3__glow--one" />
+        <div className="tr-hero-v3__glow tr-hero-v3__glow--two" />
+        <div className="tr-hero-v3__line tr-hero-v3__line--one" />
+        <div className="tr-hero-v3__line tr-hero-v3__line--two" />
+      </div>
 
-      <div
-        className="hero__background-orb hero__background-orb--one"
-        aria-hidden="true"
-      />
+      <Container className="tr-hero-v3__container">
+        <div className="tr-hero-v3__copy">
+          <div className="tr-hero-v3__eyebrow">
+            <span className="tr-hero-v3__eyebrow-icon">
+              <Sparkles size={15} aria-hidden="true" />
+            </span>
 
-      <div
-        className="hero__background-orb hero__background-orb--two"
-        aria-hidden="true"
-      />
-
-      <Container className="hero__inner hero__inner--v2">
-        <div className="hero__copy hero__copy--v2">
-          <div className="hero__eyebrow hero__eyebrow--v2">
-            <Sparkles size={16} aria-hidden="true" />
-            <span>SMART REVIEW™</span>
+            <span>Reputación basada en experiencias reales</span>
           </div>
 
-          <h1 className="hero__title">
-            Tu reputación vende
-            <span>
-              incluso cuando tu negocio está cerrado.
-            </span>
+          <h1 id="hero-title" className="tr-hero-v3__title">
+            Haz visible la confianza que tu negocio
+            <span>ya está generando.</span>
           </h1>
 
-          <p className="hero__lead hero__lead--v2">
-            Convierte experiencias reales en confianza visible.
-            Tienda Review ayuda a tus clientes a expresar mejor
-            lo que vivieron, sin publicar nada automáticamente.
+          <p className="tr-hero-v3__lead">
+            Tienda Review transforma una buena experiencia en un
+            proceso simple para compartir una opinión auténtica,
+            con asistencia inteligente y control humano de
+            principio a fin.
           </p>
 
-          <div className="hero__value-line">
-            <span>Más opiniones auténticas.</span>
-            <span>Más credibilidad.</span>
-            <span>Más oportunidades.</span>
-          </div>
-
-          <div className="hero__actions hero__actions--v2">
-            <ButtonLink
+          <div className="tr-hero-v3__actions">
+            <a
               href="#registro"
-              className="hero__primary-action"
+              className="tr-hero-v3__button tr-hero-v3__button--primary"
             >
-              Solicitar acceso
+              <span>Solicitar acceso</span>
               <ArrowRight size={18} aria-hidden="true" />
-            </ButtonLink>
+            </a>
 
-            <ButtonLink
+            <a
               href="#como-funciona"
-              variant="secondary"
-              className="hero__secondary-action"
+              className="tr-hero-v3__button tr-hero-v3__button--secondary"
             >
-              Cómo funciona
+              <span>Ver cómo funciona</span>
               <ArrowDown size={17} aria-hidden="true" />
-            </ButtonLink>
+            </a>
           </div>
 
           <div
-            className="hero__proof hero__proof--v2"
-            aria-label="Principios de confianza"
+            className="tr-hero-v3__assurance"
+            aria-label="Principios de Tienda Review"
           >
-            {trustPoints.map((point) => {
-              const Icon = point.icon;
+            <div className="tr-hero-v3__assurance-icon">
+              <ShieldCheck size={20} aria-hidden="true" />
+            </div>
 
-              return (
-                <span key={point.label}>
-                  <Icon size={17} aria-hidden="true" />
-                  {point.label}
-                </span>
-              );
-            })}
+            <div>
+              <strong>Nada se publica automáticamente.</strong>
+              <p>
+                Smart Review™ prepara una propuesta. El cliente
+                conserva la decisión final.
+              </p>
+            </div>
           </div>
         </div>
 
         <div
-          className="hero__visual hero__visual--v2"
-          aria-label="Ejemplo conceptual del proceso de Smart Review"
+          className="tr-hero-v3__visual"
+          aria-label="Representación del proceso Tienda Review"
         >
-          <div
-            className="hero__visual-ring hero__visual-ring--outer"
-            aria-hidden="true"
-          />
+          <div className="tr-hero-v3__visual-header">
+            <div>
+              <span className="tr-hero-v3__visual-kicker">
+                Flujo de confianza
+              </span>
 
-          <div
-            className="hero__visual-ring hero__visual-ring--inner"
-            aria-hidden="true"
-          />
+              <h2>De la experiencia a una opinión clara</h2>
+            </div>
 
-          <div
-            className="hero__glow hero__glow--v2"
-            aria-hidden="true"
-          />
+            <div className="tr-hero-v3__status">
+              <span />
+              Control humano activo
+            </div>
+          </div>
 
-          <div className="device-mockup device-mockup--v2">
-            <div
-              className="device-mockup__speaker"
-              aria-hidden="true"
-            />
+          <div className="tr-hero-v3__workflow">
+            <div className="tr-hero-v3__qr-panel">
+              <div className="tr-hero-v3__panel-label">
+                <span>01</span>
+                Punto de contacto
+              </div>
 
-            <div
-              className="device-mockup__notch"
-              aria-hidden="true"
-            />
-
-            <div className="device-mockup__screen">
-              <div className="review-survey review-survey--v2">
-                <div className="review-survey__brand">
-                  <span className="review-survey__brand-icon">
-                    <Sparkles size={15} aria-hidden="true" />
-                  </span>
-
-                  <span>Tienda Review</span>
+              <div className="tr-hero-v3__qr-card">
+                <div className="tr-hero-v3__qr-code">
+                  <QrCode size={92} strokeWidth={1.35} aria-hidden="true" />
                 </div>
 
-                <p className="review-survey__label">
-                  Tu experiencia
-                </p>
+                <div>
+                  <strong>Escanea y participa</strong>
+                  <p>
+                    Sin descargar una aplicación.
+                  </p>
+                </div>
+              </div>
 
-                <h2>¿Cómo fue tu visita?</h2>
+              <div className="tr-hero-v3__mini-note">
+                <CheckCircle2 size={16} aria-hidden="true" />
+                Acceso simple desde el navegador
+              </div>
+            </div>
 
-                <p className="review-survey__instruction">
-                  Selecciona una puntuación y comparte tu
-                  experiencia.
-                </p>
+            <div className="tr-hero-v3__workflow-arrow" aria-hidden="true">
+              <ChevronRight size={22} />
+            </div>
+
+            <div className="tr-hero-v3__experience-panel">
+              <div className="tr-hero-v3__panel-label">
+                <span>02</span>
+                Experiencia
+              </div>
+
+              <div className="tr-hero-v3__question">
+                <p>¿Cómo fue tu experiencia?</p>
 
                 <div
-                  className="review-survey__stars"
-                  aria-label="Cinco estrellas"
+                  className="tr-hero-v3__stars"
+                  aria-label="Cinco estrellas seleccionadas"
                 >
                   {[1, 2, 3, 4, 5].map((star) => (
                     <Star
                       key={star}
-                      size={27}
+                      size={23}
                       fill="currentColor"
                       aria-hidden="true"
                     />
                   ))}
                 </div>
+              </div>
 
-                <div className="review-survey__answer">
-                  Excelente atención y ambiente.
+              <div className="tr-hero-v3__customer-answer">
+                “La atención fue rápida y el equipo explicó todo
+                con mucha claridad.”
+              </div>
+            </div>
+
+            <div className="tr-hero-v3__workflow-arrow" aria-hidden="true">
+              <ChevronRight size={22} />
+            </div>
+
+            <div className="tr-hero-v3__review-panel">
+              <div className="tr-hero-v3__panel-label">
+                <span>03</span>
+                Smart Review™
+              </div>
+
+              <div className="tr-hero-v3__review-card">
+                <div className="tr-hero-v3__review-card-heading">
+                  <span>
+                    <Sparkles size={15} aria-hidden="true" />
+                  </span>
+
+                  <strong>Borrador sugerido</strong>
                 </div>
 
-                <div className="review-survey__draft">
-                  <div className="review-survey__draft-title">
-                    <Sparkles size={17} aria-hidden="true" />
-                    <strong>Smart Review™</strong>
-                  </div>
+                <p>
+                  “Recibí una atención rápida, clara y muy amable.
+                  El equipo respondió mis dudas con paciencia.”
+                </p>
 
-                  <p>
-                    “Excelente atención, ambiente agradable y
-                    una experiencia que sin duda repetiría.”
-                  </p>
-
-                  <div className="review-survey__control">
-                    <ShieldCheck size={15} aria-hidden="true" />
-                    Tú revisas antes de continuar
-                  </div>
+                <div className="tr-hero-v3__review-control">
+                  <ShieldCheck size={15} aria-hidden="true" />
+                  Revisar antes de continuar
                 </div>
+              </div>
+
+              <div className="tr-hero-v3__review-actions">
+                <button type="button">Editar</button>
 
                 <button type="button">
-                  Continuar a Google
-                  <ArrowRight size={16} aria-hidden="true" />
+                  Continuar
+                  <ArrowRight size={14} aria-hidden="true" />
                 </button>
               </div>
             </div>
           </div>
 
-          <article className="floating-card floating-card--google floating-card--v2">
-            <div className="floating-card__icon">
-              G
-            </div>
+          <div className="tr-hero-v3__visual-footer">
+            {principles.map((principle) => {
+              const Icon = principle.icon;
+
+              return (
+                <div
+                  key={principle.title}
+                  className="tr-hero-v3__principle"
+                >
+                  <span>
+                    <Icon size={17} aria-hidden="true" />
+                  </span>
+
+                  <div>
+                    <strong>{principle.title}</strong>
+                    <p>{principle.description}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div
+            className="tr-hero-v3__floating-badge"
+            aria-hidden="true"
+          >
+            <span className="tr-hero-v3__floating-check">
+              <Check size={15} strokeWidth={3} />
+            </span>
 
             <div>
-              <span className="floating-card__step">
-                Paso 1
-              </span>
-              <strong>Experiencia real</strong>
-              <p>El cliente comparte lo que vivió.</p>
+              <strong>La persona siempre decide</strong>
+              <small>La tecnología solo acompaña</small>
             </div>
-          </article>
-
-          <article className="floating-card floating-card--rating floating-card--v2">
-            <span className="floating-card__step">
-              Paso 2
-            </span>
-
-            <div className="floating-card__rating-row">
-              <strong>4.9</strong>
-              <span>★★★★★</span>
-            </div>
-
-            <p>Smart Review organiza el mensaje.</p>
-          </article>
-
-          <article className="floating-card floating-card--growth floating-card--v2">
-            <span className="floating-card__step">
-              Paso 3
-            </span>
-
-            <span className="floating-card__growth-value">
-              Control humano
-            </span>
-
-            <p>El cliente revisa y decide si continuar.</p>
-          </article>
+          </div>
         </div>
       </Container>
 
-      <a
-        href="#como-funciona"
-        className="hero__scroll-cue"
-        aria-label="Ir a la sección Cómo funciona"
-      >
-        <span>Descubrir cómo funciona</span>
-        <ArrowDown size={18} aria-hidden="true" />
-      </a>
+      <div className="tr-hero-v3__bottom">
+        <Container className="tr-hero-v3__bottom-inner">
+          <span>Smart Review™</span>
+
+          <p>
+            Menos fricción para compartir. Más claridad para
+            decidir.
+          </p>
+
+          <a href="#como-funciona">
+            Explorar el proceso
+            <ArrowRight size={15} aria-hidden="true" />
+          </a>
+        </Container>
+      </div>
     </section>
   );
 }
