@@ -1,6 +1,6 @@
 /* =========================================================
    Tienda Review LP
-   Hero Visual Composition v4.0
+   Hero Visual Composition v4.1
 
    Structure:
    - The iPhone is the visual origin.
@@ -8,6 +8,11 @@
    - Card sizes are normalized into two visual groups.
    - Desktop, laptop and tablet retain the full composition.
    - Mobile progressively simplifies the composition.
+
+   v4.1:
+   - Moves only the Google Reviews card inward on desktop.
+   - Prevents overlap with the hero heading.
+   - Preserves the existing iPhone and other card positions.
    ========================================================= */
 
 
@@ -63,6 +68,12 @@
 
   --hero-card-small-width: 148px;
   --hero-card-large-width: 154px;
+
+  /*
+   * Additional inward offset used only by the
+   * upper-left Google Reviews card.
+   */
+  --hero-google-inset: 52px;
 
   position: relative;
 
@@ -178,6 +189,9 @@
 /* =========================================================
    7. GOOGLE REVIEWS CARD
    Upper-left
+
+   The card remains anchored to the iPhone coordinate system,
+   but is moved inward to prevent overlap with the copy.
    ========================================================= */
 
 .floating-card--google {
@@ -185,7 +199,11 @@
 
   transform:
     translate(
-      calc(-50% - var(--hero-card-inline-distance)),
+      calc(
+        -50%
+        - var(--hero-card-inline-distance)
+        + var(--hero-google-inset)
+      ),
       calc(-50% - var(--hero-card-block-distance))
     );
 
@@ -320,7 +338,11 @@
   100% {
     transform:
       translate(
-        calc(-50% - var(--hero-card-inline-distance)),
+        calc(
+          -50%
+          - var(--hero-card-inline-distance)
+          + var(--hero-google-inset)
+        ),
         calc(-50% - var(--hero-card-block-distance))
       );
   }
@@ -328,7 +350,11 @@
   50% {
     transform:
       translate(
-        calc(-50% - var(--hero-card-inline-distance)),
+        calc(
+          -50%
+          - var(--hero-card-inline-distance)
+          + var(--hero-google-inset)
+        ),
         calc(-50% - var(--hero-card-block-distance) - 4px)
       );
   }
@@ -414,6 +440,8 @@
     --hero-card-small-width: 144px;
     --hero-card-large-width: 150px;
 
+    --hero-google-inset: 38px;
+
     width: min(100%, 630px);
     min-height: 525px;
 
@@ -425,6 +453,8 @@
 /* =========================================================
    14. LAPTOP / NARROW DESKTOP
    Switch to one column before the layout becomes cramped.
+   The copy and visual no longer share the same horizontal row,
+   so the extra Google-card inset is removed.
    ========================================================= */
 
 @media (max-width: 1180px) {
@@ -454,6 +484,8 @@
 
     --hero-card-small-width: 148px;
     --hero-card-large-width: 154px;
+
+    --hero-google-inset: 0px;
 
     justify-self: center;
 
@@ -609,7 +641,11 @@
   .floating-card--google {
     transform:
       translate(
-        calc(-50% - var(--hero-card-inline-distance)),
+        calc(
+          -50%
+          - var(--hero-card-inline-distance)
+          + var(--hero-google-inset)
+        ),
         calc(-50% - var(--hero-card-block-distance))
       );
   }
@@ -714,7 +750,11 @@
   .floating-card--google {
     transform:
       translate(
-        calc(-50% - var(--hero-card-inline-distance)),
+        calc(
+          -50%
+          - var(--hero-card-inline-distance)
+          + var(--hero-google-inset)
+        ),
         calc(-50% - var(--hero-card-block-distance))
       );
   }
