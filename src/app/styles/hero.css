@@ -1,13 +1,13 @@
 /* =========================================================
    Tienda Review LP
-   Hero Layout & Visual Composition v3.1
+   Hero Visual Composition v4.0
 
-   Objectives:
-   - Prevent overlap between hero copy and iPhone mockup
-   - Keep the iPhone at the visual center
-   - Arrange four surrounding cards as one composition
-   - Preserve visual balance across desktop, laptop,
-     tablet and mobile layouts
+   Structure:
+   - The iPhone is the visual origin.
+   - Four cards are positioned relative to that origin.
+   - Card sizes are normalized into two visual groups.
+   - Desktop, laptop and tablet retain the full composition.
+   - Mobile progressively simplifies the composition.
    ========================================================= */
 
 
@@ -16,15 +16,17 @@
    ========================================================= */
 
 .hero__inner {
-  display: grid;
+  position: relative;
+  z-index: 2;
 
+  display: grid;
   grid-template-columns:
     minmax(0, 0.86fr)
-    minmax(500px, 1.14fr);
+    minmax(520px, 1.14fr);
 
   align-items: center;
 
-  gap: clamp(54px, 6vw, 96px);
+  gap: clamp(56px, 5.5vw, 92px);
 }
 
 
@@ -37,37 +39,45 @@
   z-index: 10;
 
   min-width: 0;
-  max-width: 650px;
+  max-width: 680px;
 }
 
 .hero h1 {
-  max-width: 650px;
+  max-width: 680px;
 }
 
 .hero__lead {
-  max-width: 620px;
+  max-width: 630px;
 }
 
 
 /* =========================================================
-   3. HERO VISUAL AREA
+   3. HERO VISUAL COORDINATE SYSTEM
    ========================================================= */
 
 .hero__visual {
+  --hero-phone-width: 220px;
+
+  --hero-card-inline-distance: 228px;
+  --hero-card-block-distance: 151px;
+
+  --hero-card-small-width: 148px;
+  --hero-card-large-width: 154px;
+
   position: relative;
 
   justify-self: end;
 
   width: min(100%, 680px);
   min-width: 0;
-  min-height: 540px;
+  min-height: 548px;
 
   display: grid;
   place-items: center;
 
   isolation: isolate;
 
-  transform: translateX(clamp(0px, 1.5vw, 20px));
+  transform: translateX(clamp(0px, 1.25vw, 18px));
 }
 
 
@@ -78,9 +88,26 @@
 .hero__glow {
   position: absolute;
 
-  inset: 8% 6% 5% 8%;
+  top: 50%;
+  left: 50%;
 
   z-index: 0;
+
+  width: min(510px, 82%);
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(35, 167, 111, 0.14) 0%,
+      rgba(35, 167, 111, 0.075) 32%,
+      rgba(35, 167, 111, 0.022) 58%,
+      transparent 74%
+    );
+
+  transform: translate(-50%, -50%);
 
   pointer-events: none;
 }
@@ -95,139 +122,309 @@
 
   z-index: 5;
 
-  width: 220px;
+  width: var(--hero-phone-width);
   max-width: 100%;
 
   margin: 0;
 
-  transform: translateY(2px);
-
   box-shadow:
-    0 27px 54px rgba(13, 27, 42, 0.16),
-    0 10px 21px rgba(13, 27, 42, 0.085),
+    0 28px 58px rgba(13, 27, 42, 0.16),
+    0 10px 22px rgba(13, 27, 42, 0.085),
     inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+
+  animation: deviceFloat 7s ease-in-out infinite;
 }
 
 
 /* =========================================================
-   6. SHARED FLOATING CARD SETTINGS
+   6. SHARED CARD SYSTEM
    ========================================================= */
 
 .floating-card,
 .hero__trust-badge {
   position: absolute;
 
+  top: 50%;
+  left: 50%;
+
   z-index: 7;
 
+  margin: 0;
+
   box-shadow:
-    0 13px 29px rgba(13, 27, 42, 0.065),
-    0 3px 9px rgba(13, 27, 42, 0.025);
+    0 15px 34px rgba(13, 27, 42, 0.072),
+    0 4px 11px rgba(13, 27, 42, 0.03);
 
   will-change: transform;
 }
 
 
+/* Keep the two left cards visually consistent */
+
+.floating-card--google,
+.hero__trust-badge {
+  width: var(--hero-card-small-width);
+}
+
+
+/* Keep the two right cards visually consistent */
+
+.floating-card--rating,
+.floating-card--growth {
+  width: var(--hero-card-large-width);
+}
+
+
 /* =========================================================
    7. GOOGLE REVIEWS CARD
-   Upper-left card
+   Upper-left
    ========================================================= */
 
 .floating-card--google {
-  top: 18%;
-  left: 8%;
+  min-width: 0;
 
-  transform: translateY(-2px);
+  transform:
+    translate(
+      calc(-50% - var(--hero-card-inline-distance)),
+      calc(-50% - var(--hero-card-block-distance))
+    );
+
+  animation: cardFloatGoogle 6.5s ease-in-out infinite;
 }
 
 
 /* =========================================================
    8. RATING CARD
-   Upper-right card
+   Upper-right
    ========================================================= */
 
 .floating-card--rating {
-  top: 17%;
-  right: 7%;
+  min-width: 0;
 
-  transform: translateY(2px);
+  transform:
+    translate(
+      calc(-50% + var(--hero-card-inline-distance)),
+      calc(-50% - var(--hero-card-block-distance) + 7px)
+    );
+
+  animation: cardFloatRating 6.8s ease-in-out infinite;
 }
 
 
 /* =========================================================
    9. GROWTH CARD
-   Lower-right card
+   Lower-right
    ========================================================= */
 
 .floating-card--growth {
-  right: 8%;
-  bottom: 17%;
+  min-width: 0;
 
-  transform: translateY(-2px);
+  transform:
+    translate(
+      calc(-50% + var(--hero-card-inline-distance) - 3px),
+      calc(-50% + var(--hero-card-block-distance))
+    );
+
+  animation: cardFloatGrowth 7s ease-in-out infinite;
 }
 
 
 /* =========================================================
    10. TRUST BADGE
-   Lower-left card
+   Lower-left
    ========================================================= */
 
 .hero__trust-badge {
-  left: 8%;
-  bottom: 16%;
+  min-width: 0;
 
-  transform: translateY(2px);
+  transform:
+    translate(
+      calc(-50% - var(--hero-card-inline-distance) + 4px),
+      calc(-50% + var(--hero-card-block-distance) - 7px)
+    );
+
+  animation: cardFloatTrust 7.2s ease-in-out infinite;
 }
 
 
 /* =========================================================
-   11. LARGE / MEDIUM DESKTOP
+   11. CARD CONTENT NORMALIZATION
    ========================================================= */
 
-@media (max-width: 1280px) {
+.floating-card {
+  min-height: 58px;
+
+  padding: 11px 13px;
+}
+
+.hero__trust-badge {
+  min-height: 58px;
+
+  padding: 10px 12px;
+}
+
+.floating-card--rating,
+.floating-card--growth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  min-height: 64px;
+}
+
+.floating-card--google {
+  align-items: center;
+}
+
+.floating-card--google > div:last-child,
+.hero__trust-badge > div:last-child {
+  min-width: 0;
+}
+
+.floating-card strong,
+.hero__trust-badge strong {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.floating-card--google strong,
+.hero__trust-badge strong {
+  white-space: nowrap;
+}
+
+.floating-card--growth p,
+.floating-card--rating p {
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   12. MOTION
+   Each card keeps a slightly different floating rhythm
+   while preserving its anchored position.
+   ========================================================= */
+
+@keyframes deviceFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes cardFloatGoogle {
+  0%,
+  100% {
+    transform:
+      translate(
+        calc(-50% - var(--hero-card-inline-distance)),
+        calc(-50% - var(--hero-card-block-distance))
+      );
+  }
+
+  50% {
+    transform:
+      translate(
+        calc(-50% - var(--hero-card-inline-distance)),
+        calc(-50% - var(--hero-card-block-distance) - 4px)
+      );
+  }
+}
+
+@keyframes cardFloatRating {
+  0%,
+  100% {
+    transform:
+      translate(
+        calc(-50% + var(--hero-card-inline-distance)),
+        calc(-50% - var(--hero-card-block-distance) + 7px)
+      );
+  }
+
+  50% {
+    transform:
+      translate(
+        calc(-50% + var(--hero-card-inline-distance)),
+        calc(-50% - var(--hero-card-block-distance) + 2px)
+      );
+  }
+}
+
+@keyframes cardFloatGrowth {
+  0%,
+  100% {
+    transform:
+      translate(
+        calc(-50% + var(--hero-card-inline-distance) - 3px),
+        calc(-50% + var(--hero-card-block-distance))
+      );
+  }
+
+  50% {
+    transform:
+      translate(
+        calc(-50% + var(--hero-card-inline-distance) - 3px),
+        calc(-50% + var(--hero-card-block-distance) - 4px)
+      );
+  }
+}
+
+@keyframes cardFloatTrust {
+  0%,
+  100% {
+    transform:
+      translate(
+        calc(-50% - var(--hero-card-inline-distance) + 4px),
+        calc(-50% + var(--hero-card-block-distance) - 7px)
+      );
+  }
+
+  50% {
+    transform:
+      translate(
+        calc(-50% - var(--hero-card-inline-distance) + 4px),
+        calc(-50% + var(--hero-card-block-distance) - 11px)
+      );
+  }
+}
+
+
+/* =========================================================
+   13. LARGE / MEDIUM DESKTOP
+   ========================================================= */
+
+@media (max-width: 1320px) {
   .hero__inner {
     grid-template-columns:
       minmax(0, 0.88fr)
       minmax(500px, 1.12fr);
 
-    gap: clamp(48px, 5vw, 76px);
+    gap: clamp(48px, 4.5vw, 72px);
   }
 
   .hero__visual {
-    width: min(100%, 650px);
+    --hero-phone-width: 216px;
+
+    --hero-card-inline-distance: 207px;
+    --hero-card-block-distance: 145px;
+
+    --hero-card-small-width: 144px;
+    --hero-card-large-width: 150px;
+
+    width: min(100%, 630px);
     min-height: 525px;
 
-    transform: translateX(10px);
-  }
-
-  .device-mockup {
-    width: 218px;
-  }
-
-  .floating-card--google {
-    top: 18%;
-    left: 7%;
-  }
-
-  .floating-card--rating {
-    top: 17%;
-    right: 6%;
-  }
-
-  .floating-card--growth {
-    right: 7%;
-    bottom: 17%;
-  }
-
-  .hero__trust-badge {
-    left: 7%;
-    bottom: 16%;
+    transform: translateX(8px);
   }
 }
 
 
 /* =========================================================
-   12. LAPTOP / NARROW DESKTOP
-   Switch to vertical layout before columns become cramped
+   14. LAPTOP / NARROW DESKTOP
+   Switch to one column before the layout becomes cramped.
    ========================================================= */
 
 @media (max-width: 1180px) {
@@ -250,44 +447,28 @@
   }
 
   .hero__visual {
+    --hero-phone-width: 220px;
+
+    --hero-card-inline-distance: 218px;
+    --hero-card-block-distance: 148px;
+
+    --hero-card-small-width: 148px;
+    --hero-card-large-width: 154px;
+
     justify-self: center;
 
-    width: min(680px, 100%);
-    min-height: 530px;
+    width: min(660px, 100%);
+    min-height: 535px;
 
     margin-inline: auto;
 
     transform: none;
   }
-
-  .device-mockup {
-    width: 220px;
-  }
-
-  .floating-card--google {
-    top: 18%;
-    left: 9%;
-  }
-
-  .floating-card--rating {
-    top: 17%;
-    right: 9%;
-  }
-
-  .floating-card--growth {
-    right: 10%;
-    bottom: 17%;
-  }
-
-  .hero__trust-badge {
-    left: 9%;
-    bottom: 16%;
-  }
 }
 
 
 /* =========================================================
-   13. TABLET
+   15. TABLET
    ========================================================= */
 
 @media (max-width: 900px) {
@@ -296,43 +477,40 @@
   }
 
   .hero__visual {
-    width: min(620px, 100%);
-    min-height: 505px;
+    --hero-phone-width: 210px;
+
+    --hero-card-inline-distance: 186px;
+    --hero-card-block-distance: 139px;
+
+    --hero-card-small-width: 140px;
+    --hero-card-large-width: 146px;
+
+    width: min(570px, 100%);
+    min-height: 500px;
   }
 
   .hero__glow {
-    inset: 9% 5% 6%;
+    width: min(460px, 88%);
   }
 
-  .device-mockup {
-    width: 214px;
+  .floating-card,
+  .hero__trust-badge {
+    border-radius: 13px;
   }
 
-  .floating-card--google {
-    top: 18%;
-    left: 5%;
-  }
-
-  .floating-card--rating {
-    top: 17%;
-    right: 5%;
-  }
-
-  .floating-card--growth {
-    right: 7%;
-    bottom: 16%;
+  .floating-card {
+    padding: 10px 11px;
   }
 
   .hero__trust-badge {
-    left: 5%;
-    bottom: 15%;
+    padding: 9px 11px;
   }
 }
 
 
 /* =========================================================
-   14. SMALL TABLET / LARGE MOBILE
-   Keep all four cards visible while there is enough width
+   16. SMALL TABLET / LARGE MOBILE
+   Full four-card composition is retained, but compressed.
    ========================================================= */
 
 @media (max-width: 760px) {
@@ -340,16 +518,21 @@
     gap: 44px;
   }
 
-  .hero__copy {
-    max-width: 100%;
-  }
-
+  .hero__copy,
   .hero h1,
   .hero__lead {
     max-width: 100%;
   }
 
   .hero__visual {
+    --hero-phone-width: 202px;
+
+    --hero-card-inline-distance: 156px;
+    --hero-card-block-distance: 132px;
+
+    --hero-card-small-width: 130px;
+    --hero-card-large-width: 136px;
+
     width: 100%;
     min-height: 470px;
 
@@ -357,48 +540,48 @@
   }
 
   .hero__glow {
-    inset: 10% 3% 7%;
+    width: min(420px, 96%);
   }
 
   .device-mockup {
-    width: 204px;
-
     border-radius: 35px;
-
-    transform: none;
   }
 
   .device-mockup__screen {
     border-radius: 28px;
   }
 
-  .floating-card--google {
-    top: 10%;
-    left: 1%;
-  }
-
-  .floating-card--rating {
-    top: 18%;
-    right: 1%;
-
-    min-width: 126px;
-  }
-
-  .floating-card--growth {
-    right: 2%;
-    bottom: 13%;
-  }
-
+  .floating-card,
   .hero__trust-badge {
-    left: 1%;
-    bottom: 12%;
+    min-height: 54px;
+  }
+
+  .floating-card--rating,
+  .floating-card--growth {
+    min-height: 58px;
+  }
+
+  .floating-card strong {
+    font-size: 9.5px;
+  }
+
+  .floating-card p {
+    font-size: 8px;
+  }
+
+  .hero__trust-badge strong {
+    font-size: 9px;
+  }
+
+  .hero__trust-badge small {
+    font-size: 7.5px;
   }
 }
 
 
 /* =========================================================
-   15. MOBILE
-   Remove lower cards to prevent visual congestion
+   17. MOBILE
+   Keep the upper cards and remove the lower pair.
    ========================================================= */
 
 @media (max-width: 620px) {
@@ -407,98 +590,118 @@
   }
 
   .hero__visual {
-    min-height: 445px;
-  }
+    --hero-phone-width: 200px;
 
-  .device-mockup {
-    width: 202px;
-  }
+    --hero-card-inline-distance: min(32vw, 139px);
+    --hero-card-block-distance: 121px;
 
-  .floating-card--google {
-    top: 9%;
-    left: 0;
-  }
+    --hero-card-small-width: 124px;
+    --hero-card-large-width: 128px;
 
-  .floating-card--rating {
-    top: 19%;
-    right: 0;
-
-    min-width: 122px;
+    min-height: 438px;
   }
 
   .floating-card--growth,
   .hero__trust-badge {
     display: none;
   }
+
+  .floating-card--google {
+    transform:
+      translate(
+        calc(-50% - var(--hero-card-inline-distance)),
+        calc(-50% - var(--hero-card-block-distance))
+      );
+  }
+
+  .floating-card--rating {
+    transform:
+      translate(
+        calc(-50% + var(--hero-card-inline-distance)),
+        calc(-50% - var(--hero-card-block-distance) + 12px)
+      );
+  }
 }
 
 
 /* =========================================================
-   16. SMALL MOBILE
+   18. SMALL MOBILE
    ========================================================= */
 
 @media (max-width: 430px) {
   .hero__visual {
-    min-height: 420px;
+    --hero-phone-width: 190px;
+
+    --hero-card-inline-distance: min(31vw, 121px);
+    --hero-card-block-distance: 114px;
+
+    --hero-card-small-width: 116px;
+    --hero-card-large-width: 120px;
+
+    min-height: 412px;
   }
 
   .hero__glow {
-    inset: 11% 0 8%;
-  }
-
-  .device-mockup {
-    width: 192px;
+    width: 100%;
   }
 
   .floating-card {
-    padding: 9px 10px;
+    padding: 8px 9px;
   }
 
-  .floating-card--google {
-    top: 8%;
-    left: -5px;
+  .floating-card__icon {
+    width: 26px;
+    height: 26px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
   }
 
-  .floating-card--rating {
-    top: 19%;
-    right: -5px;
-
-    min-width: 114px;
+  .floating-card__rating-row strong {
+    font-size: 17px;
   }
 }
 
 
 /* =========================================================
-   17. VERY SMALL MOBILE
+   19. VERY SMALL MOBILE
    ========================================================= */
 
 @media (max-width: 360px) {
   .hero__visual {
-    min-height: 400px;
+    --hero-phone-width: 180px;
+
+    --hero-card-inline-distance: 103px;
+    --hero-card-block-distance: 107px;
+
+    --hero-card-small-width: 108px;
+    --hero-card-large-width: 112px;
+
+    min-height: 392px;
   }
 
-  .device-mockup {
-    width: 182px;
+  .floating-card strong {
+    font-size: 8.8px;
   }
 
-  .floating-card--google {
-    left: -10px;
-
-    transform: scale(0.92);
-    transform-origin: left center;
+  .floating-card p {
+    font-size: 7.3px;
   }
 
-  .floating-card--rating {
-    right: -10px;
+  .floating-card__rating-row strong {
+    font-size: 16px;
+  }
 
-    transform: scale(0.92);
-    transform-origin: right center;
+  .floating-card__rating-row span {
+    font-size: 8px;
   }
 }
 
 
 /* =========================================================
-   18. REDUCED MOTION
+   20. REDUCED MOTION
+   Preserve the anchored position when animation is disabled.
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -506,5 +709,37 @@
   .floating-card,
   .hero__trust-badge {
     animation: none;
+  }
+
+  .floating-card--google {
+    transform:
+      translate(
+        calc(-50% - var(--hero-card-inline-distance)),
+        calc(-50% - var(--hero-card-block-distance))
+      );
+  }
+
+  .floating-card--rating {
+    transform:
+      translate(
+        calc(-50% + var(--hero-card-inline-distance)),
+        calc(-50% - var(--hero-card-block-distance) + 7px)
+      );
+  }
+
+  .floating-card--growth {
+    transform:
+      translate(
+        calc(-50% + var(--hero-card-inline-distance) - 3px),
+        calc(-50% + var(--hero-card-block-distance))
+      );
+  }
+
+  .hero__trust-badge {
+    transform:
+      translate(
+        calc(-50% - var(--hero-card-inline-distance) + 4px),
+        calc(-50% + var(--hero-card-block-distance) - 7px)
+      );
   }
 }
