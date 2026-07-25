@@ -1,18 +1,14 @@
 /* =========================================================
    Tienda Review LP
-   Hero Visual Composition v4.1
+   Hero Visual Composition v4.2
 
-   Structure:
-   - The iPhone is the visual origin.
-   - Four cards are positioned relative to that origin.
-   - Card sizes are normalized into two visual groups.
-   - Desktop, laptop and tablet retain the full composition.
-   - Mobile progressively simplifies the composition.
-
-   v4.1:
-   - Moves only the Google Reviews card inward on desktop.
-   - Prevents overlap with the hero heading.
-   - Preserves the existing iPhone and other card positions.
+   Purpose:
+   - Preserve the current Hero layout and iPhone size
+   - Remove the forced two-size card system
+   - Restore content-driven card dimensions
+   - Rebalance the four cards around the iPhone
+   - Prevent overlap with the Hero heading
+   - Reduce excessive empty space inside lower cards
    ========================================================= */
 
 
@@ -65,15 +61,6 @@
 
   --hero-card-inline-distance: 228px;
   --hero-card-block-distance: 151px;
-
-  --hero-card-small-width: 148px;
-  --hero-card-large-width: 154px;
-
-  /*
-   * Additional inward offset used only by the
-   * upper-left Google Reviews card.
-   */
-  --hero-google-inset: 52px;
 
   position: relative;
 
@@ -160,6 +147,10 @@
 
   z-index: 7;
 
+  width: auto;
+  min-width: 0;
+  max-width: none;
+
   margin: 0;
 
   box-shadow:
@@ -170,41 +161,21 @@
 }
 
 
-/* Keep the two left cards visually consistent */
-
-.floating-card--google,
-.hero__trust-badge {
-  width: var(--hero-card-small-width);
-}
-
-
-/* Keep the two right cards visually consistent */
-
-.floating-card--rating,
-.floating-card--growth {
-  width: var(--hero-card-large-width);
-}
-
-
 /* =========================================================
    7. GOOGLE REVIEWS CARD
    Upper-left
-
-   The card remains anchored to the iPhone coordinate system,
-   but is moved inward to prevent overlap with the copy.
    ========================================================= */
 
 .floating-card--google {
-  min-width: 0;
+  width: 176px;
+  min-height: 62px;
+
+  padding: 11px 13px;
 
   transform:
     translate(
-      calc(
-        -50%
-        - var(--hero-card-inline-distance)
-        + var(--hero-google-inset)
-      ),
-      calc(-50% - var(--hero-card-block-distance))
+      calc(-50% - var(--hero-card-inline-distance) + 26px),
+      calc(-50% - var(--hero-card-block-distance) - 2px)
     );
 
   animation: cardFloatGoogle 6.5s ease-in-out infinite;
@@ -217,12 +188,19 @@
    ========================================================= */
 
 .floating-card--rating {
-  min-width: 0;
+  width: 160px;
+  min-height: 68px;
+
+  padding: 12px 14px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   transform:
     translate(
-      calc(-50% + var(--hero-card-inline-distance)),
-      calc(-50% - var(--hero-card-block-distance) + 7px)
+      calc(-50% + var(--hero-card-inline-distance) - 4px),
+      calc(-50% - var(--hero-card-block-distance) + 6px)
     );
 
   animation: cardFloatRating 6.8s ease-in-out infinite;
@@ -235,12 +213,19 @@
    ========================================================= */
 
 .floating-card--growth {
-  min-width: 0;
+  width: 170px;
+  min-height: 86px;
+
+  padding: 14px 16px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   transform:
     translate(
-      calc(-50% + var(--hero-card-inline-distance) - 3px),
-      calc(-50% + var(--hero-card-block-distance))
+      calc(-50% + var(--hero-card-inline-distance) - 8px),
+      calc(-50% + var(--hero-card-block-distance) - 2px)
     );
 
   animation: cardFloatGrowth 7s ease-in-out infinite;
@@ -253,12 +238,19 @@
    ========================================================= */
 
 .hero__trust-badge {
-  min-width: 0;
+  width: 190px;
+  min-height: 86px;
+
+  padding: 13px 15px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
 
   transform:
     translate(
-      calc(-50% - var(--hero-card-inline-distance) + 4px),
-      calc(-50% + var(--hero-card-block-distance) - 7px)
+      calc(-50% - var(--hero-card-inline-distance) + 18px),
+      calc(-50% + var(--hero-card-block-distance) - 5px)
     );
 
   animation: cardFloatTrust 7.2s ease-in-out infinite;
@@ -269,29 +261,10 @@
    11. CARD CONTENT NORMALIZATION
    ========================================================= */
 
-.floating-card {
-  min-height: 58px;
-
-  padding: 11px 13px;
-}
-
-.hero__trust-badge {
-  min-height: 58px;
-
-  padding: 10px 12px;
-}
-
-.floating-card--rating,
-.floating-card--growth {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  min-height: 64px;
-}
-
 .floating-card--google {
+  display: flex;
   align-items: center;
+  gap: 10px;
 }
 
 .floating-card--google > div:last-child,
@@ -310,16 +283,30 @@
   white-space: nowrap;
 }
 
-.floating-card--growth p,
-.floating-card--rating p {
+.floating-card--rating p,
+.floating-card--growth p {
+  margin-top: 5px;
   white-space: nowrap;
+}
+
+.floating-card--growth strong {
+  line-height: 1.1;
+}
+
+.hero__trust-badge strong {
+  display: block;
+  line-height: 1.25;
+}
+
+.hero__trust-badge small {
+  display: block;
+  margin-top: 4px;
+  line-height: 1.25;
 }
 
 
 /* =========================================================
    12. MOTION
-   Each card keeps a slightly different floating rhythm
-   while preserving its anchored position.
    ========================================================= */
 
 @keyframes deviceFloat {
@@ -338,24 +325,16 @@
   100% {
     transform:
       translate(
-        calc(
-          -50%
-          - var(--hero-card-inline-distance)
-          + var(--hero-google-inset)
-        ),
-        calc(-50% - var(--hero-card-block-distance))
+        calc(-50% - var(--hero-card-inline-distance) + 26px),
+        calc(-50% - var(--hero-card-block-distance) - 2px)
       );
   }
 
   50% {
     transform:
       translate(
-        calc(
-          -50%
-          - var(--hero-card-inline-distance)
-          + var(--hero-google-inset)
-        ),
-        calc(-50% - var(--hero-card-block-distance) - 4px)
+        calc(-50% - var(--hero-card-inline-distance) + 26px),
+        calc(-50% - var(--hero-card-block-distance) - 6px)
       );
   }
 }
@@ -365,16 +344,16 @@
   100% {
     transform:
       translate(
-        calc(-50% + var(--hero-card-inline-distance)),
-        calc(-50% - var(--hero-card-block-distance) + 7px)
+        calc(-50% + var(--hero-card-inline-distance) - 4px),
+        calc(-50% - var(--hero-card-block-distance) + 6px)
       );
   }
 
   50% {
     transform:
       translate(
-        calc(-50% + var(--hero-card-inline-distance)),
-        calc(-50% - var(--hero-card-block-distance) + 2px)
+        calc(-50% + var(--hero-card-inline-distance) - 4px),
+        calc(-50% - var(--hero-card-block-distance) + 1px)
       );
   }
 }
@@ -384,16 +363,16 @@
   100% {
     transform:
       translate(
-        calc(-50% + var(--hero-card-inline-distance) - 3px),
-        calc(-50% + var(--hero-card-block-distance))
+        calc(-50% + var(--hero-card-inline-distance) - 8px),
+        calc(-50% + var(--hero-card-block-distance) - 2px)
       );
   }
 
   50% {
     transform:
       translate(
-        calc(-50% + var(--hero-card-inline-distance) - 3px),
-        calc(-50% + var(--hero-card-block-distance) - 4px)
+        calc(-50% + var(--hero-card-inline-distance) - 8px),
+        calc(-50% + var(--hero-card-block-distance) - 6px)
       );
   }
 }
@@ -403,16 +382,16 @@
   100% {
     transform:
       translate(
-        calc(-50% - var(--hero-card-inline-distance) + 4px),
-        calc(-50% + var(--hero-card-block-distance) - 7px)
+        calc(-50% - var(--hero-card-inline-distance) + 18px),
+        calc(-50% + var(--hero-card-block-distance) - 5px)
       );
   }
 
   50% {
     transform:
       translate(
-        calc(-50% - var(--hero-card-inline-distance) + 4px),
-        calc(-50% + var(--hero-card-block-distance) - 11px)
+        calc(-50% - var(--hero-card-inline-distance) + 18px),
+        calc(-50% + var(--hero-card-block-distance) - 9px)
       );
   }
 }
@@ -437,24 +416,32 @@
     --hero-card-inline-distance: 207px;
     --hero-card-block-distance: 145px;
 
-    --hero-card-small-width: 144px;
-    --hero-card-large-width: 150px;
-
-    --hero-google-inset: 38px;
-
     width: min(100%, 630px);
     min-height: 525px;
 
     transform: translateX(8px);
+  }
+
+  .floating-card--google {
+    width: 168px;
+  }
+
+  .floating-card--rating {
+    width: 154px;
+  }
+
+  .floating-card--growth {
+    width: 162px;
+  }
+
+  .hero__trust-badge {
+    width: 182px;
   }
 }
 
 
 /* =========================================================
    14. LAPTOP / NARROW DESKTOP
-   Switch to one column before the layout becomes cramped.
-   The copy and visual no longer share the same horizontal row,
-   so the extra Google-card inset is removed.
    ========================================================= */
 
 @media (max-width: 1180px) {
@@ -482,11 +469,6 @@
     --hero-card-inline-distance: 218px;
     --hero-card-block-distance: 148px;
 
-    --hero-card-small-width: 148px;
-    --hero-card-large-width: 154px;
-
-    --hero-google-inset: 0px;
-
     justify-self: center;
 
     width: min(660px, 100%);
@@ -495,6 +477,22 @@
     margin-inline: auto;
 
     transform: none;
+  }
+
+  .floating-card--google {
+    width: 176px;
+  }
+
+  .floating-card--rating {
+    width: 160px;
+  }
+
+  .floating-card--growth {
+    width: 170px;
+  }
+
+  .hero__trust-badge {
+    width: 190px;
   }
 }
 
@@ -514,9 +512,6 @@
     --hero-card-inline-distance: 186px;
     --hero-card-block-distance: 139px;
 
-    --hero-card-small-width: 140px;
-    --hero-card-large-width: 146px;
-
     width: min(570px, 100%);
     min-height: 500px;
   }
@@ -530,19 +525,32 @@
     border-radius: 13px;
   }
 
-  .floating-card {
+  .floating-card--google {
+    width: 158px;
     padding: 10px 11px;
   }
 
+  .floating-card--rating {
+    width: 146px;
+    padding: 10px 12px;
+  }
+
+  .floating-card--growth {
+    width: 154px;
+    min-height: 78px;
+    padding: 12px 14px;
+  }
+
   .hero__trust-badge {
-    padding: 9px 11px;
+    width: 172px;
+    min-height: 78px;
+    padding: 11px 13px;
   }
 }
 
 
 /* =========================================================
    16. SMALL TABLET / LARGE MOBILE
-   Full four-card composition is retained, but compressed.
    ========================================================= */
 
 @media (max-width: 760px) {
@@ -562,9 +570,6 @@
     --hero-card-inline-distance: 156px;
     --hero-card-block-distance: 132px;
 
-    --hero-card-small-width: 130px;
-    --hero-card-large-width: 136px;
-
     width: 100%;
     min-height: 470px;
 
@@ -583,14 +588,28 @@
     border-radius: 28px;
   }
 
-  .floating-card,
-  .hero__trust-badge {
-    min-height: 54px;
+  .floating-card--google {
+    width: 142px;
+    min-height: 56px;
+    padding: 9px 10px;
   }
 
-  .floating-card--rating,
-  .floating-card--growth {
+  .floating-card--rating {
+    width: 132px;
     min-height: 58px;
+    padding: 9px 10px;
+  }
+
+  .floating-card--growth {
+    width: 138px;
+    min-height: 70px;
+    padding: 10px 12px;
+  }
+
+  .hero__trust-badge {
+    width: 154px;
+    min-height: 70px;
+    padding: 10px 11px;
   }
 
   .floating-card strong {
@@ -613,7 +632,7 @@
 
 /* =========================================================
    17. MOBILE
-   Keep the upper cards and remove the lower pair.
+   Keep upper cards only
    ========================================================= */
 
 @media (max-width: 620px) {
@@ -627,9 +646,6 @@
     --hero-card-inline-distance: min(32vw, 139px);
     --hero-card-block-distance: 121px;
 
-    --hero-card-small-width: 124px;
-    --hero-card-large-width: 128px;
-
     min-height: 438px;
   }
 
@@ -639,21 +655,21 @@
   }
 
   .floating-card--google {
+    width: 130px;
+
     transform:
       translate(
-        calc(
-          -50%
-          - var(--hero-card-inline-distance)
-          + var(--hero-google-inset)
-        ),
+        calc(-50% - var(--hero-card-inline-distance) + 18px),
         calc(-50% - var(--hero-card-block-distance))
       );
   }
 
   .floating-card--rating {
+    width: 124px;
+
     transform:
       translate(
-        calc(-50% + var(--hero-card-inline-distance)),
+        calc(-50% + var(--hero-card-inline-distance) - 4px),
         calc(-50% - var(--hero-card-block-distance) + 12px)
       );
   }
@@ -671,9 +687,6 @@
     --hero-card-inline-distance: min(31vw, 121px);
     --hero-card-block-distance: 114px;
 
-    --hero-card-small-width: 116px;
-    --hero-card-large-width: 120px;
-
     min-height: 412px;
   }
 
@@ -683,6 +696,14 @@
 
   .floating-card {
     padding: 8px 9px;
+  }
+
+  .floating-card--google {
+    width: 118px;
+  }
+
+  .floating-card--rating {
+    width: 116px;
   }
 
   .floating-card__icon {
@@ -711,10 +732,15 @@
     --hero-card-inline-distance: 103px;
     --hero-card-block-distance: 107px;
 
-    --hero-card-small-width: 108px;
-    --hero-card-large-width: 112px;
-
     min-height: 392px;
+  }
+
+  .floating-card--google {
+    width: 110px;
+  }
+
+  .floating-card--rating {
+    width: 108px;
   }
 
   .floating-card strong {
@@ -737,7 +763,6 @@
 
 /* =========================================================
    20. REDUCED MOTION
-   Preserve the anchored position when animation is disabled.
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -750,36 +775,32 @@
   .floating-card--google {
     transform:
       translate(
-        calc(
-          -50%
-          - var(--hero-card-inline-distance)
-          + var(--hero-google-inset)
-        ),
-        calc(-50% - var(--hero-card-block-distance))
+        calc(-50% - var(--hero-card-inline-distance) + 26px),
+        calc(-50% - var(--hero-card-block-distance) - 2px)
       );
   }
 
   .floating-card--rating {
     transform:
       translate(
-        calc(-50% + var(--hero-card-inline-distance)),
-        calc(-50% - var(--hero-card-block-distance) + 7px)
+        calc(-50% + var(--hero-card-inline-distance) - 4px),
+        calc(-50% - var(--hero-card-block-distance) + 6px)
       );
   }
 
   .floating-card--growth {
     transform:
       translate(
-        calc(-50% + var(--hero-card-inline-distance) - 3px),
-        calc(-50% + var(--hero-card-block-distance))
+        calc(-50% + var(--hero-card-inline-distance) - 8px),
+        calc(-50% + var(--hero-card-block-distance) - 2px)
       );
   }
 
   .hero__trust-badge {
     transform:
       translate(
-        calc(-50% - var(--hero-card-inline-distance) + 4px),
-        calc(-50% + var(--hero-card-block-distance) - 7px)
+        calc(-50% - var(--hero-card-inline-distance) + 18px),
+        calc(-50% + var(--hero-card-block-distance) - 5px)
       );
   }
 }
