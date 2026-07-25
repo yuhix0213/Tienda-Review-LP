@@ -1,32 +1,34 @@
 /* =========================================================
    Tienda Review LP
-   Hero Visual Architecture v5.0
+   Hero Visual Architecture v6.0
 
-   Structure:
-   - Left column remains editable HTML.
-   - CSS-built iPhone mockup has been removed.
-   - Storefront, iPhone, lighting and decorative effects
-     are rendered through one Production Hero Asset.
-   - Four supporting cards remain editable HTML elements.
+   Production structure:
+   - Header remains editable HTML.
+   - Hero copy and CTA remain editable HTML.
+   - One full-width Hero Master Image covers the hero area.
+   - The Hero Master Image contains:
+     storefront, iPhone, Smart Review UI, lighting and glow.
+   - Supporting floating cards remain editable HTML elements.
    ========================================================= */
 
 
 /* =========================================================
-   1. HERO GRID
+   1. HERO STAGE
    ========================================================= */
 
 .hero__inner {
   position: relative;
   z-index: 2;
 
-  display: grid;
-  grid-template-columns:
-    minmax(0, 0.88fr)
-    minmax(560px, 1.12fr);
+  display: block;
 
-  align-items: center;
+  min-height: 680px;
 
-  gap: clamp(52px, 5vw, 88px);
+  overflow: hidden;
+
+  border-radius: 42px;
+
+  isolation: isolate;
 }
 
 
@@ -38,8 +40,13 @@
   position: relative;
   z-index: 10;
 
+  width: min(46%, 680px);
   min-width: 0;
-  max-width: 680px;
+
+  padding:
+    clamp(78px, 7vw, 112px)
+    0
+    clamp(62px, 6vw, 96px);
 }
 
 .hero h1 {
@@ -75,82 +82,57 @@
 
 
 /* =========================================================
-   3. HERO VISUAL
+   3. FULL-WIDTH HERO VISUAL
    ========================================================= */
 
 .hero__visual {
-  position: relative;
-
-  justify-self: end;
-
-  width: min(100%, 760px);
-  min-width: 0;
-  min-height: 590px;
-
-  isolation: isolate;
-}
-
-
-/* =========================================================
-   4. PRODUCTION HERO ASSET
-   Storefront + iPhone + Lighting + Glow
-   ========================================================= */
-
-.hero__visual-background {
   position: absolute;
   inset: 0;
 
   z-index: 1;
 
-  border-radius: 42px;
+  width: 100%;
+  min-width: 0;
+  min-height: 100%;
 
-  background-image:
-    linear-gradient(
-      90deg,
-      rgba(247, 252, 250, 0.98) 0%,
-      rgba(247, 252, 250, 0.72) 14%,
-      rgba(247, 252, 250, 0.08) 39%,
-      rgba(247, 252, 250, 0) 60%
-    ),
-    url("/images/hero/tienda-review-hero-visual-v1.png");
+  pointer-events: none;
+}
 
-  background-position:
-    center,
-    center;
 
-  background-repeat: no-repeat;
+/* =========================================================
+   4. PRODUCTION HERO MASTER IMAGE
+   ========================================================= */
 
-  background-size:
-    cover,
-    contain;
+.hero__visual-background {
+  position: absolute !important;
+  inset: 0 !important;
+
+  z-index: 1 !important;
+
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  overflow: hidden;
+
+  border-radius: inherit;
+
+  background:
+    url("/images/hero/tienda-review-hero-master-v1.png")
+    center center / cover
+    no-repeat !important;
 
   filter: drop-shadow(0 26px 54px rgba(13, 27, 42, 0.08));
 
   pointer-events: none;
 }
 
-.hero__visual-background::before {
-  content: "";
-
-  position: absolute;
-  inset: 4% 2% 3% 6%;
-
-  border: 1px solid rgba(35, 167, 111, 0.09);
-  border-radius: 50%;
-
-  pointer-events: none;
-}
-
+.hero__visual-background::before,
 .hero__visual-background::after {
-  content: "";
-
-  position: absolute;
-  inset: 13% 10% 12% 14%;
-
-  border: 1px solid rgba(35, 167, 111, 0.07);
-  border-radius: 50%;
-
-  pointer-events: none;
+  content: none;
 }
 
 
@@ -177,6 +159,7 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 
+  pointer-events: auto;
   will-change: transform;
 }
 
@@ -186,8 +169,8 @@
    ========================================================= */
 
 .floating-card--google {
-  top: 18%;
-  left: 5%;
+  top: 14%;
+  left: 42%;
 
   display: flex;
   align-items: center;
@@ -223,8 +206,8 @@
    ========================================================= */
 
 .floating-card--rating {
-  top: 19%;
-  right: 2%;
+  top: 16%;
+  right: 2.5%;
 
   display: flex;
   flex-direction: column;
@@ -250,8 +233,8 @@
    ========================================================= */
 
 .hero__trust-badge {
-  left: 2%;
-  bottom: 15%;
+  left: 41%;
+  bottom: 9%;
 
   display: flex;
   align-items: center;
@@ -295,7 +278,7 @@
 
 .floating-card--growth {
   right: 3%;
-  bottom: 14%;
+  bottom: 9%;
 
   display: flex;
   flex-direction: column;
@@ -371,11 +354,14 @@
 
 @media (max-width: 1320px) {
   .hero__inner {
-    grid-template-columns:
-      minmax(0, 0.9fr)
-      minmax(520px, 1.1fr);
+    min-height: 640px;
+  }
 
-    gap: clamp(44px, 4vw, 68px);
+  .hero__copy {
+    width: min(47%, 640px);
+
+    padding-top: 86px;
+    padding-bottom: 78px;
   }
 
   .hero h1 {
@@ -384,31 +370,30 @@
     font-size: clamp(47px, 4.1vw, 60px);
   }
 
-  .hero__visual {
-    width: min(100%, 690px);
-    min-height: 555px;
+  .hero__visual-background {
+    background-position: 55% center;
   }
 
   .floating-card--google {
-    left: 3%;
+    left: 41%;
 
     width: 168px;
   }
 
   .floating-card--rating {
-    right: 1%;
+    right: 1.5%;
 
     width: 158px;
   }
 
   .hero__trust-badge {
-    left: 1%;
+    left: 40%;
 
     width: 190px;
   }
 
   .floating-card--growth {
-    right: 1%;
+    right: 2%;
 
     width: 166px;
   }
@@ -421,59 +406,77 @@
 
 @media (max-width: 1180px) {
   .hero__inner {
-    grid-template-columns: 1fr;
-
-    gap: 54px;
+    min-height: 620px;
   }
 
   .hero__copy {
-    max-width: 760px;
+    width: min(50%, 600px);
+
+    padding-top: 76px;
+    padding-bottom: 70px;
   }
 
   .hero h1 {
-    max-width: 680px;
+    max-width: 560px;
 
-    font-size: clamp(51px, 7vw, 70px);
+    font-size: clamp(45px, 5vw, 58px);
   }
 
   .hero__lead {
-    max-width: 680px;
+    max-width: 560px;
   }
 
-  .hero__visual {
-    justify-self: center;
-
-    width: min(760px, 100%);
-    min-height: 590px;
-
-    margin-inline: auto;
+  .hero__visual-background {
+    background-position: 61% center;
   }
 
   .floating-card--google {
-    left: 6%;
+    top: 12%;
+    left: 47%;
   }
 
   .floating-card--rating {
-    right: 4%;
+    top: 14%;
+    right: 1%;
   }
 
   .hero__trust-badge {
-    left: 4%;
+    left: 46%;
+    bottom: 7%;
   }
 
   .floating-card--growth {
-    right: 5%;
+    right: 2%;
+    bottom: 7%;
   }
 }
 
 
 /* =========================================================
    13. TABLET
+   Hero copy and visual become stacked.
    ========================================================= */
 
 @media (max-width: 900px) {
   .hero__inner {
-    gap: 48px;
+    display: grid;
+    grid-template-columns: 1fr;
+
+    min-height: 0;
+
+    overflow: visible;
+
+    border-radius: 0;
+  }
+
+  .hero__copy {
+    width: 100%;
+    max-width: 720px;
+
+    padding:
+      48px
+      0
+      42px;
   }
 
   .hero h1 {
@@ -481,12 +484,21 @@
   }
 
   .hero__visual {
-    width: min(680px, 100%);
+    position: relative;
+    inset: auto;
+
+    width: 100%;
     min-height: 540px;
+
+    border-radius: 34px;
+
+    overflow: hidden;
   }
 
   .hero__visual-background {
     border-radius: 34px;
+
+    background-position: 63% center;
   }
 
   .floating-card,
@@ -495,8 +507,8 @@
   }
 
   .floating-card--google {
-    top: 17%;
-    left: 2%;
+    top: 12%;
+    left: 3%;
 
     width: 158px;
 
@@ -504,8 +516,8 @@
   }
 
   .floating-card--rating {
-    top: 18%;
-    right: 1%;
+    top: 15%;
+    right: 2%;
 
     width: 148px;
 
@@ -513,8 +525,8 @@
   }
 
   .hero__trust-badge {
-    left: 1%;
-    bottom: 14%;
+    left: 2%;
+    bottom: 9%;
 
     width: 176px;
     min-height: 80px;
@@ -523,8 +535,8 @@
   }
 
   .floating-card--growth {
-    right: 1%;
-    bottom: 13%;
+    right: 2%;
+    bottom: 9%;
 
     width: 154px;
     min-height: 82px;
@@ -539,14 +551,15 @@
    ========================================================= */
 
 @media (max-width: 760px) {
-  .hero__inner {
-    gap: 44px;
-  }
-
   .hero__copy,
   .hero h1,
   .hero__lead {
     max-width: 100%;
+  }
+
+  .hero__copy {
+    padding-top: 40px;
+    padding-bottom: 36px;
   }
 
   .hero h1 {
@@ -560,29 +573,22 @@
   }
 
   .hero__visual {
-    width: 100%;
-    min-height: 510px;
+    min-height: 500px;
 
-    overflow: visible;
+    overflow: hidden;
+
+    border-radius: 28px;
   }
 
   .hero__visual-background {
-    inset: 0 -3%;
-
     border-radius: 28px;
 
-    background-position:
-      center,
-      55% center;
-
-    background-size:
-      cover,
-      cover;
+    background-position: 67% center;
   }
 
   .floating-card--google {
-    top: 12%;
-    left: 0;
+    top: 9%;
+    left: 2%;
 
     width: 144px;
     min-height: 58px;
@@ -591,8 +597,8 @@
   }
 
   .floating-card--rating {
-    top: 17%;
-    right: 0;
+    top: 15%;
+    right: 1%;
 
     width: 134px;
     min-height: 62px;
@@ -601,8 +607,8 @@
   }
 
   .hero__trust-badge {
-    left: 0;
-    bottom: 10%;
+    left: 2%;
+    bottom: 7%;
 
     width: 158px;
     min-height: 72px;
@@ -611,8 +617,8 @@
   }
 
   .floating-card--growth {
-    right: 0;
-    bottom: 10%;
+    right: 1%;
+    bottom: 7%;
 
     width: 142px;
     min-height: 74px;
@@ -644,20 +650,12 @@
    ========================================================= */
 
 @media (max-width: 620px) {
-  .hero__inner {
-    gap: 40px;
-  }
-
   .hero__visual {
-    min-height: 450px;
+    min-height: 440px;
   }
 
   .hero__visual-background {
-    inset: 0 -8%;
-
-    background-position:
-      center,
-      58% center;
+    background-position: 70% center;
   }
 
   .floating-card--growth,
@@ -666,15 +664,15 @@
   }
 
   .floating-card--google {
-    top: 11%;
-    left: -1%;
+    top: 8%;
+    left: 1%;
 
     width: 132px;
   }
 
   .floating-card--rating {
-    top: 19%;
-    right: -1%;
+    top: 17%;
+    right: 1%;
 
     width: 124px;
   }
@@ -691,15 +689,11 @@
   }
 
   .hero__visual {
-    min-height: 420px;
+    min-height: 410px;
   }
 
   .hero__visual-background {
-    inset: 0 -12%;
-
-    background-position:
-      center,
-      60% center;
+    background-position: 72% center;
   }
 
   .floating-card {
@@ -735,7 +729,7 @@
 
 @media (max-width: 360px) {
   .hero__visual {
-    min-height: 400px;
+    min-height: 390px;
   }
 
   .floating-card--google {
