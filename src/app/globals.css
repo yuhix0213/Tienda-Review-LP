@@ -3021,3 +3021,75 @@ section[id] {
 .hero__trust-badge small{display:block;margin-top:3px;color:var(--tr-muted);font-size:11px}
 @media(max-width:1120px){.site-header__mobile-cta{display:inline-flex!important;margin-top:10px}.hero__trust-badge{left:12%;bottom:10%}}
 @media(max-width:680px){.site-header__logo{height:32px;max-width:170px}.hero__trust-badge{left:0;bottom:0}.floating-card--google{transform:scale(.92);transform-origin:left top}.floating-card--rating{transform:scale(.92);transform-origin:right top}}
+
+/* =========================================================
+   Tienda Review LP
+   Final Header Geometry Override v1.0
+   Keep this block at the end of globals.css.
+   ========================================================= */
+
+.site-header {
+  height: 72px !important;
+  min-height: 72px !important;
+}
+
+.site-header .container,
+.site-header__inner {
+  height: 72px !important;
+  min-height: 72px !important;
+  max-height: 72px !important;
+}
+
+.site-header__brand,
+.site-header__actions {
+  height: 72px !important;
+  align-items: center !important;
+}
+
+.site-header__brand img,
+.site-header__logo {
+  width: 176px !important;
+  height: auto !important;
+  max-width: 176px !important;
+  max-height: 52px !important;
+}
+
+.site-header__nav > a:not(.button) {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+.site-header__actions .button,
+.site-header__actions .button--primary {
+  min-height: 40px !important;
+  height: 40px !important;
+  padding-block: 0 !important;
+  padding-inline: 16px !important;
+}
+
+.hero {
+  min-height: calc(100svh - 72px) !important;
+}
+
+@media (max-width: 680px) {
+  .site-header {
+    height: 64px !important;
+    min-height: 64px !important;
+  }
+
+  .site-header .container,
+  .site-header__inner,
+  .site-header__brand,
+  .site-header__actions {
+    height: 64px !important;
+    min-height: 64px !important;
+    max-height: 64px !important;
+  }
+
+  .site-header__brand img,
+  .site-header__logo {
+    width: 154px !important;
+    max-width: 154px !important;
+    max-height: 44px !important;
+  }
+}
