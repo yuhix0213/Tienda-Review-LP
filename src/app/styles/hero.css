@@ -770,3 +770,88 @@
     animation: none;
   }
 }
+
+/* =========================================================
+   Tienda Review LP
+   Final Hero Image Alignment Override v1.0
+   Keep this block at the end of hero.css.
+   ========================================================= */
+
+.hero__inner {
+  min-height: 680px !important;
+}
+
+.hero__visual-background {
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+
+  background-color: #ffffff !important;
+  background-image:
+    url("/images/hero/tienda-review-hero-master-v1.png") !important;
+  background-repeat: no-repeat !important;
+
+  /* Fill the complete rounded Hero frame without the right-shifted gap. */
+  background-size: cover !important;
+
+  /* Keep the storefront and iPhone inside the visible right side. */
+  background-position: 52% 54% !important;
+}
+
+.hero__copy {
+  width: min(43%, 650px) !important;
+}
+
+.floating-card--google {
+  left: 44% !important;
+}
+
+.hero__trust-badge {
+  left: 43% !important;
+}
+
+@media (max-width: 1320px) {
+  .hero__visual-background {
+    background-position: 54% 54% !important;
+  }
+}
+
+@media (max-width: 1180px) {
+  .hero__visual-background {
+    background-position: 58% 54% !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero__inner {
+    min-height: 0 !important;
+  }
+
+  .hero__visual {
+    min-height: 540px !important;
+  }
+
+  .hero__visual-background {
+    background-position: 62% 54% !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero__visual {
+    min-height: 500px !important;
+  }
+
+  .hero__visual-background {
+    background-position: 66% 54% !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero__visual {
+    min-height: 440px !important;
+  }
+
+  .hero__visual-background {
+    background-position: 69% 54% !important;
+  }
+}
