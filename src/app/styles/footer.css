@@ -1,0 +1,95 @@
+/* Tienda Review LP — Footer Polish v2.1 */
+
+.footer {
+  padding-top: 82px;
+}
+
+.footer__top {
+  grid-template-columns: minmax(360px, 0.92fr) minmax(0, 1.08fr);
+  gap: clamp(64px, 7vw, 108px);
+}
+
+.footer__brand {
+  max-width: 545px;
+  padding-left: 16px;
+}
+
+.footer__logo {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.footer__official-logo {
+  display: block;
+  width: 296px !important;
+  height: auto !important;
+  max-width: 100%;
+  filter: brightness(0) invert(1);
+}
+
+.footer__brand > p {
+  max-width: 500px;
+  margin-top: 27px;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.footer__trust {
+  margin-top: 22px;
+}
+
+.footer__nav {
+  align-self: start;
+  padding-top: 8px;
+}
+
+.footer__bottom a {
+  transition: color 180ms ease;
+}
+
+.footer__bottom a:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 1100px) {
+  .footer__top {
+    grid-template-columns: minmax(300px, 0.85fr) minmax(0, 1.15fr);
+    gap: 52px;
+  }
+
+  .footer__official-logo {
+    width: 270px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .footer__top {
+    grid-template-columns: 1fr;
+    gap: 52px;
+  }
+
+  .footer__brand {
+    max-width: 610px;
+    padding-left: 0;
+  }
+
+  .footer__nav {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 680px) {
+  .footer {
+    padding-top: 60px;
+  }
+
+  .footer__official-logo {
+    width: 238px !important;
+  }
+
+  .footer__brand > p {
+    margin-top: 22px;
+    font-size: 13.5px;
+  }
+}
