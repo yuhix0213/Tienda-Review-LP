@@ -22,7 +22,7 @@
 
   display: block;
 
-  min-height: 680px;
+  min-height: 720px;
 
   overflow: hidden;
 
@@ -40,7 +40,7 @@
   position: relative;
   z-index: 10;
 
-  width: min(46%, 680px);
+  width: min(43%, 650px);
   min-width: 0;
 
   padding:
@@ -120,10 +120,12 @@
 
   border-radius: inherit;
 
-  background:
-    url("/images/hero/tienda-review-hero-master-v1.png")
-    center center / cover
-    no-repeat !important;
+  background-color: #ffffff !important;
+  background-image:
+    url("/images/hero/tienda-review-hero-master-v1.png") !important;
+  background-position: right center !important;
+  background-repeat: no-repeat !important;
+  background-size: auto 112% !important;
 
   filter: drop-shadow(0 26px 54px rgba(13, 27, 42, 0.08));
 
@@ -170,7 +172,7 @@
 
 .floating-card--google {
   top: 14%;
-  left: 42%;
+  left: 44%;
 
   display: flex;
   align-items: center;
@@ -233,7 +235,7 @@
    ========================================================= */
 
 .hero__trust-badge {
-  left: 41%;
+  left: 43%;
   bottom: 9%;
 
   display: flex;
