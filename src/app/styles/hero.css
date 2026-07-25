@@ -1,29 +1,41 @@
 /* =========================================================
    Tienda Review LP
-   Hero Polish v3.0
+   Hero Layout & Visual Composition v3.1
 
-   Purpose:
+   Objectives:
    - Prevent overlap between hero copy and iPhone mockup
-   - Give the visual column sufficient horizontal space
-   - Move the complete visual composition slightly right
-   - Preserve the existing mobile stacking behavior
+   - Keep the iPhone at the visual center
+   - Arrange four surrounding cards as one composition
+   - Preserve visual balance across desktop, laptop,
+     tablet and mobile layouts
    ========================================================= */
 
-/* ---------------------------------------------------------
-   Desktop layout
-   --------------------------------------------------------- */
+
+/* =========================================================
+   1. HERO GRID
+   ========================================================= */
 
 .hero__inner {
+  display: grid;
+
   grid-template-columns:
     minmax(0, 0.86fr)
     minmax(500px, 1.14fr);
 
+  align-items: center;
+
   gap: clamp(54px, 6vw, 96px);
 }
 
+
+/* =========================================================
+   2. HERO COPY
+   ========================================================= */
+
 .hero__copy {
   position: relative;
-  z-index: 4;
+  z-index: 10;
+
   min-width: 0;
   max-width: 650px;
 }
@@ -36,34 +48,59 @@
   max-width: 620px;
 }
 
-/* ---------------------------------------------------------
-   Visual composition
-   --------------------------------------------------------- */
+
+/* =========================================================
+   3. HERO VISUAL AREA
+   ========================================================= */
 
 .hero__visual {
   position: relative;
+
   justify-self: end;
 
-  width: min(100%, 650px);
+  width: min(100%, 680px);
   min-width: 0;
-  min-height: 510px;
+  min-height: 540px;
 
   display: grid;
   place-items: center;
 
-  transform: translateX(clamp(0px, 1.7vw, 24px));
+  isolation: isolate;
+
+  transform: translateX(clamp(0px, 1.5vw, 20px));
 }
+
+
+/* =========================================================
+   4. BACKGROUND GLOW
+   ========================================================= */
 
 .hero__glow {
-  inset: 10% 5% 5% 10%;
+  position: absolute;
+
+  inset: 8% 6% 5% 8%;
+
+  z-index: 0;
+
+  pointer-events: none;
 }
 
-/* ---------------------------------------------------------
-   iPhone mockup
-   --------------------------------------------------------- */
+
+/* =========================================================
+   5. IPHONE MOCKUP
+   ========================================================= */
 
 .device-mockup {
-  width: 222px;
+  position: relative;
+
+  z-index: 5;
+
+  width: 220px;
+  max-width: 100%;
+
+  margin: 0;
+
+  transform: translateY(2px);
 
   box-shadow:
     0 27px 54px rgba(13, 27, 42, 0.16),
@@ -71,49 +108,132 @@
     inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
-/* ---------------------------------------------------------
-   Floating cards
-   Keep all elements inside the visual column
-   --------------------------------------------------------- */
 
-.floating-card {
+/* =========================================================
+   6. SHARED FLOATING CARD SETTINGS
+   ========================================================= */
+
+.floating-card,
+.hero__trust-badge {
+  position: absolute;
+
+  z-index: 7;
+
   box-shadow:
     0 13px 29px rgba(13, 27, 42, 0.065),
     0 3px 9px rgba(13, 27, 42, 0.025);
+
+  will-change: transform;
 }
+
+
+/* =========================================================
+   7. GOOGLE REVIEWS CARD
+   Upper-left card
+   ========================================================= */
 
 .floating-card--google {
-  top: 22%;
-  left: 7%;
+  top: 18%;
+  left: 8%;
+
+  transform: translateY(-2px);
 }
+
+
+/* =========================================================
+   8. RATING CARD
+   Upper-right card
+   ========================================================= */
 
 .floating-card--rating {
-  top: 20%;
-  right: 4%;
+  top: 17%;
+  right: 7%;
+
+  transform: translateY(2px);
 }
+
+
+/* =========================================================
+   9. GROWTH CARD
+   Lower-right card
+   ========================================================= */
 
 .floating-card--growth {
-  right: 7%;
-  bottom: 20%;
+  right: 8%;
+  bottom: 17%;
+
+  transform: translateY(-2px);
 }
+
+
+/* =========================================================
+   10. TRUST BADGE
+   Lower-left card
+   ========================================================= */
 
 .hero__trust-badge {
-  left: 7%;
+  left: 8%;
   bottom: 16%;
 
-  box-shadow:
-    0 13px 29px rgba(13, 27, 42, 0.065),
-    0 3px 9px rgba(13, 27, 42, 0.025);
+  transform: translateY(2px);
 }
 
-/* ---------------------------------------------------------
-   Medium desktop
-   Stack before the two columns become too narrow
-   --------------------------------------------------------- */
+
+/* =========================================================
+   11. LARGE / MEDIUM DESKTOP
+   ========================================================= */
+
+@media (max-width: 1280px) {
+  .hero__inner {
+    grid-template-columns:
+      minmax(0, 0.88fr)
+      minmax(500px, 1.12fr);
+
+    gap: clamp(48px, 5vw, 76px);
+  }
+
+  .hero__visual {
+    width: min(100%, 650px);
+    min-height: 525px;
+
+    transform: translateX(10px);
+  }
+
+  .device-mockup {
+    width: 218px;
+  }
+
+  .floating-card--google {
+    top: 18%;
+    left: 7%;
+  }
+
+  .floating-card--rating {
+    top: 17%;
+    right: 6%;
+  }
+
+  .floating-card--growth {
+    right: 7%;
+    bottom: 17%;
+  }
+
+  .hero__trust-badge {
+    left: 7%;
+    bottom: 16%;
+  }
+}
+
+
+/* =========================================================
+   12. LAPTOP / NARROW DESKTOP
+   Switch to vertical layout before columns become cramped
+   ========================================================= */
 
 @media (max-width: 1180px) {
   .hero__inner {
     grid-template-columns: 1fr;
+
     gap: 54px;
   }
 
@@ -133,29 +253,42 @@
     justify-self: center;
 
     width: min(680px, 100%);
-    min-height: 520px;
+    min-height: 530px;
 
     margin-inline: auto;
+
     transform: none;
   }
 
-  .floating-card--google,
-  .hero__trust-badge {
-    left: 8%;
+  .device-mockup {
+    width: 220px;
+  }
+
+  .floating-card--google {
+    top: 18%;
+    left: 9%;
   }
 
   .floating-card--rating {
-    right: 8%;
+    top: 17%;
+    right: 9%;
   }
 
   .floating-card--growth {
     right: 10%;
+    bottom: 17%;
+  }
+
+  .hero__trust-badge {
+    left: 9%;
+    bottom: 16%;
   }
 }
 
-/* ---------------------------------------------------------
-   Tablet
-   --------------------------------------------------------- */
+
+/* =========================================================
+   13. TABLET
+   ========================================================= */
 
 @media (max-width: 900px) {
   .hero__inner {
@@ -164,38 +297,47 @@
 
   .hero__visual {
     width: min(620px, 100%);
-    min-height: 500px;
+    min-height: 505px;
+  }
+
+  .hero__glow {
+    inset: 9% 5% 6%;
   }
 
   .device-mockup {
-    width: 218px;
+    width: 214px;
   }
 
   .floating-card--google {
-    left: 6%;
+    top: 18%;
+    left: 5%;
   }
 
   .floating-card--rating {
-    right: 6%;
+    top: 17%;
+    right: 5%;
   }
 
   .floating-card--growth {
-    right: 8%;
+    right: 7%;
+    bottom: 16%;
   }
 
   .hero__trust-badge {
-    left: 6%;
-    bottom: 14%;
+    left: 5%;
+    bottom: 15%;
   }
 }
 
-/* ---------------------------------------------------------
-   Mobile
-   --------------------------------------------------------- */
 
-@media (max-width: 720px) {
+/* =========================================================
+   14. SMALL TABLET / LARGE MOBILE
+   Keep all four cards visible while there is enough width
+   ========================================================= */
+
+@media (max-width: 760px) {
   .hero__inner {
-    gap: 42px;
+    gap: 44px;
   }
 
   .hero__copy {
@@ -209,17 +351,21 @@
 
   .hero__visual {
     width: 100%;
-    min-height: 455px;
+    min-height: 470px;
+
     overflow: visible;
   }
 
   .hero__glow {
-    inset: 10% 3% 6%;
+    inset: 10% 3% 7%;
   }
 
   .device-mockup {
-    width: 208px;
+    width: 204px;
+
     border-radius: 35px;
+
+    transform: none;
   }
 
   .device-mockup__screen {
@@ -227,14 +373,57 @@
   }
 
   .floating-card--google {
-    top: 8%;
-    left: 0;
+    top: 10%;
+    left: 1%;
   }
 
   .floating-card--rating {
     top: 18%;
-    right: 0;
+    right: 1%;
+
     min-width: 126px;
+  }
+
+  .floating-card--growth {
+    right: 2%;
+    bottom: 13%;
+  }
+
+  .hero__trust-badge {
+    left: 1%;
+    bottom: 12%;
+  }
+}
+
+
+/* =========================================================
+   15. MOBILE
+   Remove lower cards to prevent visual congestion
+   ========================================================= */
+
+@media (max-width: 620px) {
+  .hero__inner {
+    gap: 40px;
+  }
+
+  .hero__visual {
+    min-height: 445px;
+  }
+
+  .device-mockup {
+    width: 202px;
+  }
+
+  .floating-card--google {
+    top: 9%;
+    left: 0;
+  }
+
+  .floating-card--rating {
+    top: 19%;
+    right: 0;
+
+    min-width: 122px;
   }
 
   .floating-card--growth,
@@ -243,17 +432,22 @@
   }
 }
 
-/* ---------------------------------------------------------
-   Small mobile
-   --------------------------------------------------------- */
+
+/* =========================================================
+   16. SMALL MOBILE
+   ========================================================= */
 
 @media (max-width: 430px) {
   .hero__visual {
-    min-height: 425px;
+    min-height: 420px;
+  }
+
+  .hero__glow {
+    inset: 11% 0 8%;
   }
 
   .device-mockup {
-    width: 196px;
+    width: 192px;
   }
 
   .floating-card {
@@ -261,18 +455,51 @@
   }
 
   .floating-card--google {
+    top: 8%;
     left: -5px;
   }
 
   .floating-card--rating {
+    top: 19%;
     right: -5px;
-    min-width: 116px;
+
+    min-width: 114px;
   }
 }
 
-/* ---------------------------------------------------------
-   Reduced motion
-   --------------------------------------------------------- */
+
+/* =========================================================
+   17. VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+  .hero__visual {
+    min-height: 400px;
+  }
+
+  .device-mockup {
+    width: 182px;
+  }
+
+  .floating-card--google {
+    left: -10px;
+
+    transform: scale(0.92);
+    transform-origin: left center;
+  }
+
+  .floating-card--rating {
+    right: -10px;
+
+    transform: scale(0.92);
+    transform-origin: right center;
+  }
+}
+
+
+/* =========================================================
+   18. REDUCED MOTION
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .device-mockup,
