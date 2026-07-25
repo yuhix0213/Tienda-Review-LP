@@ -4,7 +4,6 @@ import {
   CheckCircle2,
   ShieldCheck,
   Sparkles,
-  Star,
 } from "lucide-react";
 
 import { Container } from "@/components/ui/Container";
@@ -35,8 +34,8 @@ export function Hero() {
 
           <p className="hero__lead">
             Tienda Review ayuda a tus clientes a compartir opiniones auténticas
-            de forma simple, clara y humana. Smart Review™ organiza la idea;
-            la persona siempre conserva la decisión final.
+            de forma simple, clara y humana. Smart Review™ organiza la idea; la
+            persona siempre conserva la decisión final.
           </p>
 
           <div className="hero__actions">
@@ -70,9 +69,12 @@ export function Hero() {
         </div>
 
         <div className="hero__visual" aria-label="Vista del proceso de reseña">
-          <div className="hero__glow" aria-hidden="true" />
+          <div className="hero__visual-background" aria-hidden="true" />
 
-          <div className="floating-card floating-card--google" aria-hidden="true">
+          <div
+            className="floating-card floating-card--google"
+            aria-hidden="true"
+          >
             <div className="floating-card__icon">G</div>
 
             <div>
@@ -81,7 +83,10 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="floating-card floating-card--rating" aria-hidden="true">
+          <div
+            className="floating-card floating-card--rating"
+            aria-hidden="true"
+          >
             <div className="floating-card__rating-row">
               <strong>4.9</strong>
               <span>★★★★★</span>
@@ -90,48 +95,10 @@ export function Hero() {
             <p>Experiencia verificada</p>
           </div>
 
-          <div className="device-mockup" aria-hidden="true">
-            <div className="device-mockup__notch" />
-
-            <div className="device-mockup__screen">
-              <div className="review-survey">
-                <p className="review-survey__label">TU EXPERIENCIA</p>
-
-                <h2>¿Cómo fue tu visita?</h2>
-
-                <div className="review-survey__stars">
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <Star
-                      key={index}
-                      size={23}
-                      fill="currentColor"
-                      strokeWidth={1.5}
-                    />
-                  ))}
-                </div>
-
-                <div className="review-survey__answer">
-                  El servicio fue rápido y el personal muy amable.
-                </div>
-
-                <div className="review-survey__draft">
-                  <div>
-                    <Sparkles size={16} aria-hidden="true" />
-                    <strong>Smart Review™</strong>
-                  </div>
-
-                  <p>
-                    “Excelente atención, servicio rápido y una experiencia muy
-                    agradable. Sin duda volvería.”
-                  </p>
-                </div>
-
-                <button type="button">Revisar y continuar</button>
-              </div>
-            </div>
-          </div>
-
-          <div className="floating-card floating-card--growth" aria-hidden="true">
+          <div
+            className="floating-card floating-card--growth"
+            aria-hidden="true"
+          >
             <div className="floating-card__growth-value">+38%</div>
             <p>más opiniones compartidas</p>
           </div>
