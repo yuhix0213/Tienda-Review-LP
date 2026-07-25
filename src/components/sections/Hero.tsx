@@ -21,11 +21,15 @@ export function Hero() {
 
           <h1 id="hero-title">
             <span className="hero__title-line hero__title-line--navy">
-              Convierte buenas experiencias
+              Convierte buenas
+            </span>
+
+            <span className="hero__title-line hero__title-line--navy">
+              experiencias en
             </span>
 
             <span className="hero__title-line hero__title-line--green">
-              en confianza visible.
+              confianza visible.
             </span>
           </h1>
 
@@ -47,10 +51,7 @@ export function Hero() {
             </a>
           </div>
 
-          <div
-            className="hero__proof"
-            aria-label="Principios de Tienda Review"
-          >
+          <div className="hero__proof" aria-label="Principios de Tienda Review">
             <span>
               <CheckCircle2 size={17} aria-hidden="true" />
               Sin descargar una app
@@ -68,16 +69,10 @@ export function Hero() {
           </div>
         </div>
 
-        <div
-          className="hero__visual"
-          aria-label="Vista del proceso de reseña"
-        >
+        <div className="hero__visual" aria-label="Vista del proceso de reseña">
           <div className="hero__glow" aria-hidden="true" />
 
-          <div
-            className="floating-card floating-card--google"
-            aria-hidden="true"
-          >
+          <div className="floating-card floating-card--google" aria-hidden="true">
             <div className="floating-card__icon">G</div>
 
             <div>
@@ -86,10 +81,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div
-            className="floating-card floating-card--rating"
-            aria-hidden="true"
-          >
+          <div className="floating-card floating-card--rating" aria-hidden="true">
             <div className="floating-card__rating-row">
               <strong>4.9</strong>
               <span>★★★★★</span>
@@ -139,10 +131,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div
-            className="floating-card floating-card--growth"
-            aria-hidden="true"
-          >
+          <div className="floating-card floating-card--growth" aria-hidden="true">
             <div className="floating-card__growth-value">+38%</div>
             <p>más opiniones compartidas</p>
           </div>
