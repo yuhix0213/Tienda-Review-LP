@@ -1,14 +1,15 @@
 /* =========================================================
    Tienda Review LP
-   Hero Visual Composition v4.3
+   Hero Visual Composition v4.4
 
-   Changes in v4.3:
-   - Fix the main headline into three intentional lines
-   - Preserve the approved Spanish wording
-   - Add subtle three-dimensional depth to the iPhone
-   - Reduce the 3D effect on tablets
-   - Return the device to a flat front view on mobile
-   - Preserve the current card sizes and positions
+   Changes in v4.4:
+   - Preserve the approved three-line headline
+   - Refine the iPhone perspective
+   - Remove the artificial Z-axis tilt
+   - Reduce X/Y rotation
+   - Keep rotation fixed during floating animation
+   - Improve device shadow and perceived depth
+   - Preserve card sizes, positions and Hero structure
    ========================================================= */
 
 
@@ -85,9 +86,8 @@
   --hero-card-inline-distance: 228px;
   --hero-card-block-distance: 151px;
 
-  --hero-phone-rotate-y: -7deg;
-  --hero-phone-rotate-x: 1.5deg;
-  --hero-phone-rotate-z: 0.7deg;
+  --hero-phone-rotate-y: -3.5deg;
+  --hero-phone-rotate-x: 0.4deg;
 
   position: relative;
 
@@ -101,7 +101,8 @@
   place-items: center;
 
   isolation: isolate;
-  perspective: 1200px;
+  perspective: 1600px;
+  perspective-origin: 50% 48%;
 
   transform: translateX(clamp(0px, 1.25vw, 18px));
 }
@@ -156,10 +157,14 @@
   transform-origin: 50% 50%;
   transform-style: preserve-3d;
 
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+
   box-shadow:
-    22px 31px 64px rgba(13, 27, 42, 0.18),
-    9px 13px 25px rgba(13, 27, 42, 0.1),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    16px 28px 48px rgba(13, 27, 42, 0.16),
+    7px 12px 22px rgba(13, 27, 42, 0.09),
+    1px 2px 4px rgba(13, 27, 42, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.07);
 
   animation: deviceFloat3d 7s ease-in-out infinite;
 }
@@ -169,6 +174,15 @@
 .device-mockup__notch,
 .device-mockup__screen {
   transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.device-mockup::before {
+  transform: translateZ(-2px);
+}
+
+.device-mockup::after {
+  transform: translateZ(-1px);
 }
 
 .device-mockup__screen {
@@ -349,6 +363,8 @@
 
 /* =========================================================
    12. MOTION
+   Rotation remains fixed.
+   Only vertical floating movement is animated.
    ========================================================= */
 
 @keyframes deviceFloat3d {
@@ -357,16 +373,14 @@
     transform:
       translateY(0)
       rotateX(var(--hero-phone-rotate-x))
-      rotateY(var(--hero-phone-rotate-y))
-      rotateZ(var(--hero-phone-rotate-z));
+      rotateY(var(--hero-phone-rotate-y));
   }
 
   50% {
     transform:
-      translateY(-7px)
-      rotateX(calc(var(--hero-phone-rotate-x) + 0.3deg))
-      rotateY(calc(var(--hero-phone-rotate-y) - 0.6deg))
-      rotateZ(var(--hero-phone-rotate-z));
+      translateY(-6px)
+      rotateX(var(--hero-phone-rotate-x))
+      rotateY(var(--hero-phone-rotate-y));
   }
 }
 
@@ -471,9 +485,8 @@
     --hero-card-inline-distance: 207px;
     --hero-card-block-distance: 145px;
 
-    --hero-phone-rotate-y: -6deg;
-    --hero-phone-rotate-x: 1.2deg;
-    --hero-phone-rotate-z: 0.6deg;
+    --hero-phone-rotate-y: -3deg;
+    --hero-phone-rotate-x: 0.35deg;
 
     width: min(100%, 630px);
     min-height: 525px;
@@ -529,9 +542,8 @@
     --hero-card-inline-distance: 218px;
     --hero-card-block-distance: 148px;
 
-    --hero-phone-rotate-y: -5deg;
-    --hero-phone-rotate-x: 1deg;
-    --hero-phone-rotate-z: 0.5deg;
+    --hero-phone-rotate-y: -2.5deg;
+    --hero-phone-rotate-x: 0.3deg;
 
     justify-self: center;
 
@@ -580,12 +592,13 @@
     --hero-card-inline-distance: 186px;
     --hero-card-block-distance: 139px;
 
-    --hero-phone-rotate-y: -3deg;
-    --hero-phone-rotate-x: 0.6deg;
-    --hero-phone-rotate-z: 0.3deg;
+    --hero-phone-rotate-y: -1.5deg;
+    --hero-phone-rotate-x: 0.2deg;
 
     width: min(570px, 100%);
     min-height: 500px;
+
+    perspective: 1800px;
   }
 
   .hero__glow {
@@ -654,7 +667,6 @@
 
     --hero-phone-rotate-y: 0deg;
     --hero-phone-rotate-x: 0deg;
-    --hero-phone-rotate-z: 0deg;
 
     width: 100%;
     min-height: 470px;
@@ -871,8 +883,7 @@
   .device-mockup {
     transform:
       rotateX(var(--hero-phone-rotate-x))
-      rotateY(var(--hero-phone-rotate-y))
-      rotateZ(var(--hero-phone-rotate-z));
+      rotateY(var(--hero-phone-rotate-y));
   }
 
   .floating-card--google {
