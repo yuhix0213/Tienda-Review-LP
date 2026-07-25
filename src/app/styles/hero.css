@@ -1,14 +1,14 @@
 /* =========================================================
    Tienda Review LP
-   Hero Visual Composition v4.2
+   Hero Visual Composition v4.3
 
-   Purpose:
-   - Preserve the current Hero layout and iPhone size
-   - Remove the forced two-size card system
-   - Restore content-driven card dimensions
-   - Rebalance the four cards around the iPhone
-   - Prevent overlap with the Hero heading
-   - Reduce excessive empty space inside lower cards
+   Changes in v4.3:
+   - Fix the main headline into three intentional lines
+   - Preserve the approved Spanish wording
+   - Add subtle three-dimensional depth to the iPhone
+   - Reduce the 3D effect on tablets
+   - Return the device to a flat front view on mobile
+   - Preserve the current card sizes and positions
    ========================================================= */
 
 
@@ -44,7 +44,30 @@
 }
 
 .hero h1 {
-  max-width: 680px;
+  max-width: 650px;
+  margin: 0;
+
+  color: var(--tr-navy-950);
+
+  font-size: clamp(50px, 4vw, 66px);
+  font-weight: 760;
+  line-height: 1.035;
+  letter-spacing: -0.052em;
+}
+
+.hero__title-line {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.hero__title-line--navy {
+  color: var(--tr-navy-950);
+}
+
+.hero__title-line--green {
+  margin-top: 7px;
+  color: var(--tr-green-600);
 }
 
 .hero__lead {
@@ -62,6 +85,10 @@
   --hero-card-inline-distance: 228px;
   --hero-card-block-distance: 151px;
 
+  --hero-phone-rotate-y: -7deg;
+  --hero-phone-rotate-x: 1.5deg;
+  --hero-phone-rotate-z: 0.7deg;
+
   position: relative;
 
   justify-self: end;
@@ -74,6 +101,7 @@
   place-items: center;
 
   isolation: isolate;
+  perspective: 1200px;
 
   transform: translateX(clamp(0px, 1.25vw, 18px));
 }
@@ -125,12 +153,26 @@
 
   margin: 0;
 
+  transform-origin: 50% 50%;
+  transform-style: preserve-3d;
+
   box-shadow:
-    0 28px 58px rgba(13, 27, 42, 0.16),
-    0 10px 22px rgba(13, 27, 42, 0.085),
+    22px 31px 64px rgba(13, 27, 42, 0.18),
+    9px 13px 25px rgba(13, 27, 42, 0.1),
     inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 
-  animation: deviceFloat 7s ease-in-out infinite;
+  animation: deviceFloat3d 7s ease-in-out infinite;
+}
+
+.device-mockup::before,
+.device-mockup::after,
+.device-mockup__notch,
+.device-mockup__screen {
+  transform-style: preserve-3d;
+}
+
+.device-mockup__screen {
+  transform: translateZ(1px);
 }
 
 
@@ -309,14 +351,22 @@
    12. MOTION
    ========================================================= */
 
-@keyframes deviceFloat {
+@keyframes deviceFloat3d {
   0%,
   100% {
-    transform: translateY(0);
+    transform:
+      translateY(0)
+      rotateX(var(--hero-phone-rotate-x))
+      rotateY(var(--hero-phone-rotate-y))
+      rotateZ(var(--hero-phone-rotate-z));
   }
 
   50% {
-    transform: translateY(-6px);
+    transform:
+      translateY(-7px)
+      rotateX(calc(var(--hero-phone-rotate-x) + 0.3deg))
+      rotateY(calc(var(--hero-phone-rotate-y) - 0.6deg))
+      rotateZ(var(--hero-phone-rotate-z));
   }
 }
 
@@ -410,11 +460,20 @@
     gap: clamp(48px, 4.5vw, 72px);
   }
 
+  .hero h1 {
+    max-width: 610px;
+    font-size: clamp(47px, 4.1vw, 60px);
+  }
+
   .hero__visual {
     --hero-phone-width: 216px;
 
     --hero-card-inline-distance: 207px;
     --hero-card-block-distance: 145px;
+
+    --hero-phone-rotate-y: -6deg;
+    --hero-phone-rotate-x: 1.2deg;
+    --hero-phone-rotate-z: 0.6deg;
 
     width: min(100%, 630px);
     min-height: 525px;
@@ -456,7 +515,8 @@
   }
 
   .hero h1 {
-    max-width: 740px;
+    max-width: 680px;
+    font-size: clamp(51px, 7vw, 70px);
   }
 
   .hero__lead {
@@ -468,6 +528,10 @@
 
     --hero-card-inline-distance: 218px;
     --hero-card-block-distance: 148px;
+
+    --hero-phone-rotate-y: -5deg;
+    --hero-phone-rotate-x: 1deg;
+    --hero-phone-rotate-z: 0.5deg;
 
     justify-self: center;
 
@@ -506,11 +570,19 @@
     gap: 48px;
   }
 
+  .hero h1 {
+    max-width: 620px;
+  }
+
   .hero__visual {
     --hero-phone-width: 210px;
 
     --hero-card-inline-distance: 186px;
     --hero-card-block-distance: 139px;
+
+    --hero-phone-rotate-y: -3deg;
+    --hero-phone-rotate-x: 0.6deg;
+    --hero-phone-rotate-z: 0.3deg;
 
     width: min(570px, 100%);
     min-height: 500px;
@@ -564,16 +636,31 @@
     max-width: 100%;
   }
 
+  .hero h1 {
+    font-size: clamp(39px, 11vw, 53px);
+    line-height: 1.04;
+    letter-spacing: -0.047em;
+  }
+
+  .hero__title-line {
+    width: auto;
+  }
+
   .hero__visual {
     --hero-phone-width: 202px;
 
     --hero-card-inline-distance: 156px;
     --hero-card-block-distance: 132px;
 
+    --hero-phone-rotate-y: 0deg;
+    --hero-phone-rotate-x: 0deg;
+    --hero-phone-rotate-z: 0deg;
+
     width: 100%;
     min-height: 470px;
 
     overflow: visible;
+    perspective: none;
   }
 
   .hero__glow {
@@ -582,6 +669,11 @@
 
   .device-mockup {
     border-radius: 35px;
+
+    box-shadow:
+      0 28px 58px rgba(13, 27, 42, 0.16),
+      0 10px 22px rgba(13, 27, 42, 0.085),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.08);
   }
 
   .device-mockup__screen {
@@ -681,6 +773,10 @@
    ========================================================= */
 
 @media (max-width: 430px) {
+  .hero h1 {
+    font-size: clamp(37px, 11.4vw, 48px);
+  }
+
   .hero__visual {
     --hero-phone-width: 190px;
 
@@ -770,6 +866,13 @@
   .floating-card,
   .hero__trust-badge {
     animation: none;
+  }
+
+  .device-mockup {
+    transform:
+      rotateX(var(--hero-phone-rotate-x))
+      rotateY(var(--hero-phone-rotate-y))
+      rotateZ(var(--hero-phone-rotate-z));
   }
 
   .floating-card--google {
