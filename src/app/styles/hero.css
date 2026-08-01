@@ -807,7 +807,8 @@
 }
 
 .hero__trust-badge {
-  left: 43% !important;
+  left: 3% !important;
+  bottom: 8% !important;
 }
 
 @media (max-width: 1320px) {
