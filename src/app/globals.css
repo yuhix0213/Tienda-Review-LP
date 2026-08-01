@@ -3048,10 +3048,10 @@ section[id] {
 
 .site-header__brand img,
 .site-header__logo {
-  width: 176px !important;
+  width: 224px !important;
   height: auto !important;
-  max-width: 176px !important;
-  max-height: 52px !important;
+  max-width: 224px !important;
+  max-height: 58px !important;
 }
 
 .site-header__nav > a:not(.button) {
@@ -3088,8 +3088,8 @@ section[id] {
 
   .site-header__brand img,
   .site-header__logo {
-    width: 154px !important;
-    max-width: 154px !important;
-    max-height: 44px !important;
+    width: 190px !important;
+    max-width: 190px !important;
+    max-height: 50px !important;
   }
 }
