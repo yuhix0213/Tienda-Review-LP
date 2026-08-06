@@ -927,78 +927,15 @@ a {
 }
 
 /* Education Component v1.0 */
-/* Section photo banners (v1.0) */
-.section-photo-banner {
-  position: relative;
-  width: 100%;
-  height: clamp(220px, 26vw, 360px);
-  margin-top: clamp(40px, 5vw, 56px);
-  overflow: hidden;
-  border-radius: var(--tr-radius-md);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center 35%;
-  box-shadow: 0 20px 50px rgba(13, 27, 42, 0.08);
-}
-
-.section-photo-banner::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(7, 24, 47, 0) 55%,
-    rgba(7, 24, 47, 0.22) 100%
-  );
-}
-
-.section-photo-banner--como-funciona {
-  background-image: url("/images/sections/section-como-funciona.jpg");
-  background-position: center 30%;
-}
-
-.section-photo-banner--el-problema {
-  background-image: url("/images/sections/section-el-problema.jpg");
-  background-position: center 25%;
-}
-
-.section-photo-banner--dudas {
-  background-image: url("/images/sections/section-dudas.jpg");
-  background-position: center 32%;
-}
-
-.section-photo-banner--crecimiento {
-  background-image: url("/images/sections/section-crecimiento.jpg");
-  background-position: center 38%;
-}
-
-.section-photo-banner--confianza {
-  background-image: url("/images/sections/section-confianza.jpg");
-  background-position: center 55%;
-}
-
-.section-photo-banner--faq {
-  background-image: url("/images/sections/section-faq.jpg");
-  background-position: center 30%;
-}
-
-.section-photo-banner--compact {
-  height: clamp(160px, 18vw, 220px);
-  margin-top: 24px;
-  margin-bottom: 4px;
-}
-
-@media (max-width: 720px) {
-  .section-photo-banner {
-    height: 220px;
-    margin-top: 32px;
-  }
-}
-
 .education {
   position: relative;
   padding: clamp(92px, 10vw, 150px) 0;
-  background: var(--tr-white);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.86) 38%, rgba(255,255,255,0.93) 62%, rgba(255,255,255,0.99) 100%),
+    url("/images/sections/section-como-funciona.jpg");
+  background-repeat: no-repeat;
+  background-size: cover, cover;
+  background-position: center, center 30%;
 }
 
 .section-heading {
@@ -1265,7 +1202,11 @@ a {
   padding: clamp(92px, 10vw, 150px) 0;
   background:
     radial-gradient(circle at 12% 10%, rgba(29,147,98,0.10), transparent 28%),
-    linear-gradient(180deg, #f7faf9 0%, #eef5f2 100%);
+    linear-gradient(180deg, rgba(247,250,249,0.95) 0%, rgba(247,250,249,0.78) 32%, rgba(238,245,242,0.85) 60%, rgba(238,245,242,0.97) 100%),
+    url("/images/sections/section-el-problema.jpg");
+  background-repeat: no-repeat;
+  background-size: auto, cover, cover;
+  background-position: center, center, center 25%;
 }
 
 .problem::before {
@@ -1546,7 +1487,12 @@ a {
 .barrier {
   position: relative;
   padding: clamp(92px, 10vw, 150px) 0;
-  background: var(--tr-white);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.62) 30%, rgba(255,255,255,0.74) 58%, rgba(255,255,255,0.95) 100%),
+    url("/images/sections/section-dudas.jpg");
+  background-repeat: no-repeat;
+  background-size: cover, cover;
+  background-position: center, center 45%;
 }
 
 .barrier__header {
@@ -2176,7 +2122,11 @@ a {
   overflow: hidden;
   background:
     radial-gradient(circle at 12% 82%, rgba(29,147,98,0.11), transparent 28%),
-    linear-gradient(180deg, #f8fbfa 0%, #eef5f2 100%);
+    linear-gradient(180deg, rgba(248,251,250,0.95) 0%, rgba(248,251,250,0.76) 30%, rgba(238,245,242,0.86) 58%, rgba(238,245,242,0.97) 100%),
+    url("/images/sections/section-crecimiento.jpg");
+  background-repeat: no-repeat;
+  background-size: auto, cover, cover;
+  background-position: center, center, center 38%;
 }
 
 .growth__header {
@@ -2493,7 +2443,12 @@ a {
 .digital-trust {
   position: relative;
   padding: clamp(96px, 10vw, 150px) 0;
-  background: var(--tr-white);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.80) 32%, rgba(255,255,255,0.88) 58%, rgba(255,255,255,0.98) 100%),
+    url("/images/sections/section-confianza.jpg");
+  background-repeat: no-repeat;
+  background-size: cover, cover;
+  background-position: center, center 55%;
 }
 
 .digital-trust__network {
@@ -2672,7 +2627,11 @@ a {
   padding: clamp(96px, 10vw, 150px) 0;
   background:
     radial-gradient(circle at 12% 15%, rgba(29,147,98,0.10), transparent 26%),
-    linear-gradient(180deg, #f7faf9 0%, #eef5f2 100%);
+    linear-gradient(180deg, rgba(247,250,249,0.88) 0%, rgba(247,250,249,0.60) 32%, rgba(238,245,242,0.74) 60%, rgba(238,245,242,0.95) 100%),
+    url("/images/sections/section-faq.jpg");
+  background-repeat: no-repeat;
+  background-size: auto, cover, cover;
+  background-position: center, center, center 30%;
 }
 
 .faq__layout {
