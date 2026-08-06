@@ -52,12 +52,6 @@ export function FAQ() {
               los límites de Tienda Review.
             </p>
 
-            <div
-              className="section-photo-banner section-photo-banner--faq section-photo-banner--compact"
-              role="img"
-              aria-label="Dueña de un negocio conversando con una clienta"
-            />
-
             <div className="faq__trust-note">
               <span className="faq__trust-icon">
                 <ShieldCheck size={20} aria-hidden="true" />
