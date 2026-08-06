@@ -927,6 +927,74 @@ a {
 }
 
 /* Education Component v1.0 */
+/* Section photo banners (v1.0) */
+.section-photo-banner {
+  position: relative;
+  width: 100%;
+  height: clamp(220px, 26vw, 360px);
+  margin-top: clamp(40px, 5vw, 56px);
+  overflow: hidden;
+  border-radius: var(--tr-radius-md);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 35%;
+  box-shadow: 0 20px 50px rgba(13, 27, 42, 0.08);
+}
+
+.section-photo-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 24, 47, 0) 55%,
+    rgba(7, 24, 47, 0.22) 100%
+  );
+}
+
+.section-photo-banner--como-funciona {
+  background-image: url("/images/sections/section-como-funciona.jpg");
+  background-position: center 30%;
+}
+
+.section-photo-banner--el-problema {
+  background-image: url("/images/sections/section-el-problema.jpg");
+  background-position: center 25%;
+}
+
+.section-photo-banner--dudas {
+  background-image: url("/images/sections/section-dudas.jpg");
+  background-position: center 32%;
+}
+
+.section-photo-banner--crecimiento {
+  background-image: url("/images/sections/section-crecimiento.jpg");
+  background-position: center 38%;
+}
+
+.section-photo-banner--confianza {
+  background-image: url("/images/sections/section-confianza.jpg");
+  background-position: center 55%;
+}
+
+.section-photo-banner--faq {
+  background-image: url("/images/sections/section-faq.jpg");
+  background-position: center 30%;
+}
+
+.section-photo-banner--compact {
+  height: clamp(160px, 18vw, 220px);
+  margin-top: 24px;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 720px) {
+  .section-photo-banner {
+    height: 220px;
+    margin-top: 32px;
+  }
+}
+
 .education {
   position: relative;
   padding: clamp(92px, 10vw, 150px) 0;
@@ -1782,7 +1850,11 @@ a {
   color: var(--tr-white);
   background:
     radial-gradient(circle at 88% 24%, rgba(29,147,98,0.28), transparent 30%),
-    linear-gradient(145deg, var(--tr-navy-950), #0d1d3c 62%, #10284f);
+    linear-gradient(100deg, rgba(7,24,47,0.94) 0%, rgba(11,29,58,0.86) 34%, rgba(16,40,79,0.42) 62%, rgba(16,40,79,0.16) 100%),
+    url("/images/sections/section-smart-review.jpg");
+  background-repeat: no-repeat;
+  background-size: auto, cover, cover;
+  background-position: center, center, center 30%;
 }
 
 .smart-review::before {
@@ -2859,7 +2931,11 @@ a {
   color: var(--tr-white);
   background:
     radial-gradient(circle at 85% 20%, rgba(29,147,98,0.30), transparent 31%),
-    linear-gradient(145deg, var(--tr-navy-950), #10284f 68%, #16355f);
+    linear-gradient(100deg, rgba(7,24,47,0.94) 0%, rgba(11,29,58,0.85) 32%, rgba(16,40,79,0.4) 60%, rgba(16,53,95,0.14) 100%),
+    url("/images/sections/section-cta.jpg");
+  background-repeat: no-repeat;
+  background-size: auto, cover, cover;
+  background-position: center, center, center 25%;
   box-shadow: 0 30px 90px rgba(7,24,47,0.18);
 }
 
@@ -2911,11 +2987,11 @@ a {
 
 .cta__action-card {
   padding: 30px;
-  border: 1px solid rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.16);
   border-radius: 24px;
-  background: rgba(255,255,255,0.085);
-  box-shadow: 0 18px 48px rgba(0,0,0,0.16);
-  backdrop-filter: blur(14px);
+  background: rgba(11,29,58,0.55);
+  box-shadow: 0 18px 48px rgba(0,0,0,0.24);
+  backdrop-filter: blur(18px);
 }
 
 .cta__action-icon {
