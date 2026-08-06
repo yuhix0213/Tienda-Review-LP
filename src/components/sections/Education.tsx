@@ -48,6 +48,12 @@ export function Education() {
           </p>
         </div>
 
+        <div
+          className="section-photo-banner section-photo-banner--como-funciona"
+          role="img"
+          aria-label="Cliente escaneando un código QR en el mostrador de una tienda"
+        />
+
         <div className="education__journey" aria-hidden="true">
           {steps.map((step, index) => {
             const Icon = step.icon;
