@@ -53,7 +53,9 @@ export function FAQ() {
             </p>
 
             <div className="faq__trust-note">
-              <ShieldCheck size={23} aria-hidden="true" />
+              <span className="faq__trust-icon">
+                <ShieldCheck size={20} aria-hidden="true" />
+              </span>
               <div>
                 <strong>La confianza también se construye explicando.</strong>
                 <span>
