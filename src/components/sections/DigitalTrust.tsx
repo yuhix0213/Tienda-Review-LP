@@ -38,12 +38,6 @@ export function DigitalTrust() {
           </p>
         </div>
 
-        <div
-          className="section-photo-banner section-photo-banner--confianza"
-          role="img"
-          aria-label="Terraza de un negocio al atardecer con clientes y personal"
-        />
-
         <div className="digital-trust__network" aria-hidden="true">
           <div className="digital-trust__network-ring" />
           <div className="digital-trust__network-center">
