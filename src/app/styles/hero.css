@@ -862,3 +862,13 @@
     background-position: 69% 54% !important;
   }
 }
+
+.hero {
+  padding-top: 24px !important;
+}
+
+.hero__inner {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-inline: 0 !important;
+}
