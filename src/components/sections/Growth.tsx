@@ -57,6 +57,12 @@ export function Growth() {
           </p>
         </div>
 
+        <div
+          className="section-photo-banner section-photo-banner--crecimiento"
+          role="img"
+          aria-label="Familia siendo recibida con calidez en la entrada de una tienda"
+        />
+
         <div className="growth__outcomes">
           {outcomes.map((item, index) => {
             const Icon = item.icon;
