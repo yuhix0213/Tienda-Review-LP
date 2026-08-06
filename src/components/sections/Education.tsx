@@ -48,6 +48,23 @@ export function Education() {
           </p>
         </div>
 
+        <div className="education__journey" aria-hidden="true">
+          {steps.map((step, index) => {
+            const Icon = step.icon;
+
+            return (
+              <div className="education__journey-node" key={step.number}>
+                <span className="education__journey-icon">
+                  <Icon size={22} aria-hidden="true" />
+                </span>
+                {index < steps.length - 1 && (
+                  <span className="education__journey-path" />
+                )}
+              </div>
+            );
+          })}
+        </div>
+
         <div className="education__flow">
           {steps.map((step, index) => {
             const Icon = step.icon;
