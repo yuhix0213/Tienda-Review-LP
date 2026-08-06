@@ -872,3 +872,8 @@
   max-width: 100% !important;
   margin-inline: 0 !important;
 }
+
+.hero__copy {
+  padding-left: clamp(24px, 4vw, 72px) !important;
+  padding-right: clamp(16px, 3vw, 48px) !important;
+}
