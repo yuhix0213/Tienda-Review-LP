@@ -796,6 +796,12 @@
 
   /* Keep the storefront and iPhone inside the visible right side. */
   background-position: 52% 54% !important;
+
+  /* Slight overscan to absorb sub-pixel rounding gaps at the rounded
+     corners that some browsers/zoom levels introduce with
+     border-radius + overflow:hidden + background-size:cover. */
+  transform: scale(1.015) !important;
+  transform-origin: center !important;
 }
 
 .hero__copy {
