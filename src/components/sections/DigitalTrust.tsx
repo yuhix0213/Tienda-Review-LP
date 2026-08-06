@@ -38,6 +38,29 @@ export function DigitalTrust() {
           </p>
         </div>
 
+        <div className="digital-trust__network" aria-hidden="true">
+          <div className="digital-trust__network-ring" />
+          <div className="digital-trust__network-center">
+            <ShieldCheck size={26} aria-hidden="true" />
+          </div>
+
+          {pillars.map((pillar, index) => {
+            const Icon = pillar.icon;
+
+            return (
+              <div
+                className={`digital-trust__network-node digital-trust__network-node--${index + 1}`}
+                key={pillar.title}
+              >
+                <span>
+                  <Icon size={18} aria-hidden="true" />
+                </span>
+                <strong>{pillar.title}</strong>
+              </div>
+            );
+          })}
+        </div>
+
         <div className="digital-trust__grid">
           {pillars.map((pillar) => {
             const Icon = pillar.icon;
