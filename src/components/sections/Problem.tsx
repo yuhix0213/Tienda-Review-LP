@@ -58,6 +58,12 @@ export function Problem() {
           </div>
         </div>
 
+        <div
+          className="section-photo-banner section-photo-banner--el-problema"
+          role="img"
+          aria-label="Dueña de un negocio observando pensativa desde su tienda"
+        />
+
         <div className="problem__grid">
           {problems.map((problem, index) => {
             const Icon = problem.icon;
