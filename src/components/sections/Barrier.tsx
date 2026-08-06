@@ -81,6 +81,12 @@ export function Barrier() {
           </p>
         </div>
 
+        <div
+          className="section-photo-banner section-photo-banner--dudas"
+          role="img"
+          aria-label="Clienta disfrutando un café en la terraza de un negocio"
+        />
+
         <div className="barrier__grid">
           {barriers.map((item, index) => {
             const Icon = item.icon;
