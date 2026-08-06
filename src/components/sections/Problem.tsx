@@ -2,6 +2,7 @@ import {
   EyeOff,
   MessageCircleWarning,
   SearchX,
+  Star,
   TrendingDown,
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
@@ -44,6 +45,12 @@ export function Problem() {
           </div>
 
           <div className="problem__statement">
+            <div className="problem__fade" aria-hidden="true">
+              <Star size={18} />
+              <Star size={18} />
+              <Star size={18} />
+              <EyeOff size={18} />
+            </div>
             <span>La brecha</span>
             <strong>
               Entre lo que tus clientes viven y lo que los nuevos clientes pueden ver.
