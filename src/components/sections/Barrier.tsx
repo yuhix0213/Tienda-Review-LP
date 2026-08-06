@@ -3,6 +3,7 @@ import {
   CheckCircle2,
   FileCheck2,
   MessageCircleMore,
+  MousePointerClick,
   PenLine,
   ShieldCheck,
   UserRoundCheck,
@@ -50,6 +51,27 @@ export function Barrier() {
           <div className="section-heading">
             <span className="section-heading__eyebrow">LAS DUDAS SON NORMALES</span>
             <h2>Pedir una reseña no debería sentirse incómodo.</h2>
+          </div>
+
+          <div className="barrier__control-visual" aria-hidden="true">
+            <div className="barrier__control-row">
+              <span className="barrier__control-label">
+                <MousePointerClick size={15} />
+                Decisión del cliente
+              </span>
+              <span className="barrier__control-toggle barrier__control-toggle--on">
+                <span className="barrier__control-knob" />
+              </span>
+            </div>
+            <div className="barrier__control-row barrier__control-row--muted">
+              <span className="barrier__control-label">
+                <Bot size={15} />
+                Publicación automática
+              </span>
+              <span className="barrier__control-toggle">
+                <span className="barrier__control-knob" />
+              </span>
+            </div>
           </div>
 
           <p className="barrier__lead">
