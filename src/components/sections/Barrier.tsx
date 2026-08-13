@@ -49,7 +49,15 @@ export function Barrier() {
       <Container>
         <div className="barrier__header">
           <div className="section-heading">
-            <span className="section-heading__eyebrow">LAS DUDAS SON NORMALES</span>
+            <div className="section-heading__kicker">
+              <span className="photo-chip" aria-hidden="true">
+                <span
+                  className="photo-chip__img"
+                  style={{ backgroundImage: "url(/images/sections/accent-dudas.jpg)" }}
+                />
+              </span>
+              <span className="section-heading__eyebrow">LAS DUDAS SON NORMALES</span>
+            </div>
             <h2>Pedir una reseña no debería sentirse incómodo.</h2>
           </div>
 
