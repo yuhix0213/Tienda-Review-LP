@@ -36,7 +36,15 @@ export function Problem() {
       <Container>
         <div className="problem__intro">
           <div className="section-heading">
-            <span className="section-heading__eyebrow">EL PROBLEMA</span>
+            <div className="section-heading__kicker">
+              <span className="photo-chip" aria-hidden="true">
+                <span
+                  className="photo-chip__img"
+                  style={{ backgroundImage: "url(/images/sections/accent-el-problema.jpg)" }}
+                />
+              </span>
+              <span className="section-heading__eyebrow">EL PROBLEMA</span>
+            </div>
             <h2>Tu negocio puede ser excelente y parecer invisible.</h2>
             <p>
               La reputación real de un negocio y la reputación que las personas
