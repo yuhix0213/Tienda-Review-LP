@@ -46,7 +46,15 @@ export function Growth() {
       <Container>
         <div className="growth__header">
           <div className="section-heading">
-            <span className="section-heading__eyebrow">CRECIMIENTO BASADO EN CONFIANZA</span>
+            <div className="section-heading__kicker">
+              <span className="photo-chip" aria-hidden="true">
+                <span
+                  className="photo-chip__img"
+                  style={{ backgroundImage: "url(/images/sections/accent-crecimiento.jpg)" }}
+                />
+              </span>
+              <span className="section-heading__eyebrow">CRECIMIENTO BASADO EN CONFIANZA</span>
+            </div>
             <h2>La reputación no es un resultado aislado. Es un activo que se acumula.</h2>
           </div>
 
