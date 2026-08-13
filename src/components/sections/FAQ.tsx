@@ -45,7 +45,15 @@ export function FAQ() {
       <Container>
         <div className="faq__layout">
           <div className="faq__intro">
-            <span className="section-heading__eyebrow">PREGUNTAS FRECUENTES</span>
+            <div className="section-heading__kicker">
+              <span className="photo-chip" aria-hidden="true">
+                <span
+                  className="photo-chip__img"
+                  style={{ backgroundImage: "url(/images/sections/accent-faq.jpg)" }}
+                />
+              </span>
+              <span className="section-heading__eyebrow">PREGUNTAS FRECUENTES</span>
+            </div>
             <h2>Claridad antes de comenzar.</h2>
             <p>
               Respuestas directas sobre el funcionamiento, el control humano y
