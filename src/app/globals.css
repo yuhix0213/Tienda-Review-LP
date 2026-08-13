@@ -927,15 +927,56 @@ a {
 }
 
 /* Education Component v1.0 */
+/* Photo accent chip (v1.0) — a single considered photo per section, */
+/* used as a small tilted print alongside the section eyebrow rather */
+/* than a full-bleed background. */
+.section-heading__kicker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.section-heading--center .section-heading__kicker {
+  justify-content: center;
+}
+
+.section-heading__kicker .section-heading__eyebrow {
+  margin-bottom: 0;
+}
+
+.photo-chip {
+  display: block;
+  flex-shrink: 0;
+  width: 54px;
+  height: 54px;
+  padding: 4px;
+  background: var(--tr-white);
+  border-radius: 12px;
+  box-shadow:
+    0 14px 26px rgba(13, 27, 42, 0.14),
+    0 3px 8px rgba(13, 27, 42, 0.08);
+  transform: rotate(-4deg);
+}
+
+.photo-chip__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.photo-chip--right {
+  transform: rotate(4deg);
+}
+
 .education {
   position: relative;
   padding: clamp(92px, 10vw, 150px) 0;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.86) 38%, rgba(255,255,255,0.93) 62%, rgba(255,255,255,0.99) 100%),
-    url("/images/sections/section-como-funciona.jpg");
-  background-repeat: no-repeat;
-  background-size: cover, cover;
-  background-position: center, center 30%;
+  background: var(--tr-white);
 }
 
 .section-heading {
@@ -1202,11 +1243,7 @@ a {
   padding: clamp(92px, 10vw, 150px) 0;
   background:
     radial-gradient(circle at 12% 10%, rgba(29,147,98,0.10), transparent 28%),
-    linear-gradient(180deg, rgba(247,250,249,0.95) 0%, rgba(247,250,249,0.78) 32%, rgba(238,245,242,0.85) 60%, rgba(238,245,242,0.97) 100%),
-    url("/images/sections/section-el-problema.jpg");
-  background-repeat: no-repeat;
-  background-size: auto, cover, cover;
-  background-position: center, center, center 25%;
+    linear-gradient(180deg, #f7faf9 0%, #eef5f2 100%);
 }
 
 .problem::before {
@@ -1487,12 +1524,7 @@ a {
 .barrier {
   position: relative;
   padding: clamp(92px, 10vw, 150px) 0;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.62) 30%, rgba(255,255,255,0.74) 58%, rgba(255,255,255,0.95) 100%),
-    url("/images/sections/section-dudas.jpg");
-  background-repeat: no-repeat;
-  background-size: cover, cover;
-  background-position: center, center 45%;
+  background: var(--tr-white);
 }
 
 .barrier__header {
@@ -2122,11 +2154,7 @@ a {
   overflow: hidden;
   background:
     radial-gradient(circle at 12% 82%, rgba(29,147,98,0.11), transparent 28%),
-    linear-gradient(180deg, rgba(248,251,250,0.95) 0%, rgba(248,251,250,0.76) 30%, rgba(238,245,242,0.86) 58%, rgba(238,245,242,0.97) 100%),
-    url("/images/sections/section-crecimiento.jpg");
-  background-repeat: no-repeat;
-  background-size: auto, cover, cover;
-  background-position: center, center, center 38%;
+    linear-gradient(180deg, #f8fbfa 0%, #eef5f2 100%);
 }
 
 .growth__header {
@@ -2443,12 +2471,7 @@ a {
 .digital-trust {
   position: relative;
   padding: clamp(96px, 10vw, 150px) 0;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.80) 32%, rgba(255,255,255,0.88) 58%, rgba(255,255,255,0.98) 100%),
-    url("/images/sections/section-confianza.jpg");
-  background-repeat: no-repeat;
-  background-size: cover, cover;
-  background-position: center, center 55%;
+  background: var(--tr-white);
 }
 
 .digital-trust__network {
@@ -2627,11 +2650,7 @@ a {
   padding: clamp(96px, 10vw, 150px) 0;
   background:
     radial-gradient(circle at 12% 15%, rgba(29,147,98,0.10), transparent 26%),
-    linear-gradient(180deg, rgba(247,250,249,0.88) 0%, rgba(247,250,249,0.60) 32%, rgba(238,245,242,0.74) 60%, rgba(238,245,242,0.95) 100%),
-    url("/images/sections/section-faq.jpg");
-  background-repeat: no-repeat;
-  background-size: auto, cover, cover;
-  background-position: center, center, center 30%;
+    linear-gradient(180deg, #f7faf9 0%, #eef5f2 100%);
 }
 
 .faq__layout {
