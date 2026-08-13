@@ -29,7 +29,15 @@ export function DigitalTrust() {
     <section id="confianza" className="digital-trust">
       <Container>
         <div className="section-heading section-heading--center">
-          <span className="section-heading__eyebrow">DIGITAL TRUST</span>
+          <div className="section-heading__kicker">
+            <span className="photo-chip" aria-hidden="true">
+              <span
+                className="photo-chip__img"
+                style={{ backgroundImage: "url(/images/sections/accent-confianza.jpg)" }}
+              />
+            </span>
+            <span className="section-heading__eyebrow">DIGITAL TRUST</span>
+          </div>
           <h2>Construimos un ecosistema de confianza digital.</h2>
           <p>
             Tienda Review es el primer paso hacia una economía donde la
